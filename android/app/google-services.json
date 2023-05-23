@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1040080308617",
+    "project_id": "yaabaay-ae547",
+    "storage_bucket": "yaabaay-ae547.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040080308617:android:359daf0816a9ada042b958",
+        "android_client_info": {
+          "package_name": "com.yaabaay.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040080308617-32nn9oa7464nnmgo1ersq6p0t27jc3tt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTRsHL4D-3-DcpSyHj5POxeW5MVUZAPhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040080308617-32nn9oa7464nnmgo1ersq6p0t27jc3tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

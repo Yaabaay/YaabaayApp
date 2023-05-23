@@ -1,0 +1,31 @@
+{
+<<<<<<< HEAD
+  "Home": "Home",
+  "signIn": "Sign in",
+  "signUp": "Sign Up",
+
+  "successTitle": "Success",
+  "errorTitle": "Error",
+  "warningTitle": "Warning",
+
+  "sign.in.title" : "Sign In",
+  "sign.in.email" : "Email address",
+  "sign.in.password" : "Password",
+  "sign.in.forgot" : "Forgot password ?",
+  "sign.in.no.account" : "You don't have an account yet?",
+
+  "settings.title" : "Settings",
+  "settings.language": "Language",
+  "settings.theme" : "Appearance",
+  "settings.notifications" : "Notifications",
+  "settings.privacy.policy" : "Privacy & Security",
+  "settings.terms.conditions" : "Terms & Conditions",
+  "settings.help.support" : "Help & Support",
+  "settings.about.support" : "About",
+
+
+  "" : ""
+=======
+  "viewer.home.label": "Home"
+>>>>>>> 354f22d6529a326f9be8dd15271a7c107ac7624f
+}
