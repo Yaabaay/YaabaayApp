@@ -28,9 +28,20 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .background
+            .withOpacity(Get.isDarkMode ? 0.6 : 0.8),
         child: Stack(
           children: [
+            Positioned(
+              child: Image.asset(
+                Get.isDarkMode ? Assets.appWhiteLogo : Assets.appLogo,
+                width: 100,
+              ),
+              bottom: 50,
+              left: 50,
+            ),
             ListView(
               shrinkWrap: true,
               padding: EdgeInsets.zero,
