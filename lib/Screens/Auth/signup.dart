@@ -3,6 +3,7 @@ import 'package:app/DTOs/Authentication/signup.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/Go.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:app/Utilities/transform_direction.dart';
@@ -16,7 +17,6 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../Controllers/authentication_controller.dart';
-import '../../DTOs/Authentication/login.dart';
 import '../../Enums/Shared/keys.dart';
 import '../../Models/Shared/message_exception.dart';
 import '../../Utilities/assets.dart';
@@ -63,23 +63,22 @@ class SignupScreen extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        decoration: backgroundBoxDecoration(
-            Assets.bgScreen2,
-            boxFit: BoxFit.contain,
-            color: Theme.of(context).colorScheme.background
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: 120.0,),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: _loginForm(context),
-            ),
-          ],
-        ),
-      )
-    );
+        child: Container(
+      decoration: backgroundBoxDecoration(Assets.bgScreen2,
+          boxFit: BoxFit.contain,
+          color: Theme.of(context).colorScheme.background),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 120.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: _loginForm(context),
+          ),
+        ],
+      ),
+    ));
   }
 
   Widget _loginForm(BuildContext context) {
@@ -87,7 +86,9 @@ class SignupScreen extends StatelessWidget {
       key: _formKey,
       child: Column(
         children: [
-          const SizedBox(height: 100,),
+          const SizedBox(
+            height: 100,
+          ),
           Container(
             width: Get.width,
             child: FxText.displaySmall(
@@ -95,6 +96,10 @@ class SignupScreen extends StatelessWidget {
               fontWeight: 600,
               color: Theme.of(context).colorScheme.secondary,
               textDirection: getCurrentTextDirection(context),
+              style: TextStyle(
+                fontFamily: AppTheme.fontAVGARDD,
+                fontSize: AppTheme.fontAVGARDDSize,
+              ),
             ),
           ),
           FxSpacing.height(20),
@@ -106,7 +111,9 @@ class SignupScreen extends StatelessWidget {
               textDirection: TextDirection.ltr,
               child: IntlPhoneField(
                 controller: _mobileController,
-                style: const TextStyle(color: Colors.black54),
+                style: const TextStyle(
+                  color: Colors.black54,
+                ),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -140,8 +147,7 @@ class SignupScreen extends StatelessWidget {
                   _appController.countryCode.value = country.code;
                   _appController.dialCode.value = country.dialCode;
                 },
-              )
-          )),
+              ))),
           FxSpacing.height(20),
           passwordField(context),
           FxSpacing.height(20),
@@ -180,9 +186,9 @@ class SignupScreen extends StatelessWidget {
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
           textCapitalization: TextCapitalization.sentences,
-        )
-    );
+        ));
   }
+
   Widget emailField(BuildContext context) {
     return Directionality(
         textDirection: TextDirection.ltr,
@@ -208,9 +214,9 @@ class SignupScreen extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
           textCapitalization: TextCapitalization.none,
-        )
-    );
+        ));
   }
+
   Widget passwordField(BuildContext context) {
     return Obx(() => Directionality(
         textDirection: TextDirection.ltr,
@@ -248,8 +254,7 @@ class SignupScreen extends StatelessWidget {
           textInputAction: TextInputAction.done,
           textCapitalization: TextCapitalization.sentences,
           cursorColor: Theme.of(context).colorScheme.primary,
-        )
-    ));
+        )));
   }
 
   SignupDTO _generateDTO() {
@@ -285,17 +290,17 @@ class SignupScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FxText.bodySmall(
-              AT1Strings.signUp.tr.toUpperCase(),
+            AT1Strings.signUp.tr.toUpperCase(),
+            fontWeight: 700,
+            letterSpacing: 0.5,
+            style: TextStyle(
               color: Colors.white,
-              fontWeight: 700,
-              letterSpacing: 0.5
+              fontFamily: AppTheme.fontVisbyCF,
+            ),
           ),
           FxSpacing.width(8),
-          TransformWithDirection(context, Icon(
-              FeatherIcons.chevronRight,
-              size: 18,
-              color: Colors.white
-          ))
+          TransformWithDirection(context,
+              Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white))
         ],
       ),
     );
@@ -304,18 +309,26 @@ class SignupScreen extends StatelessWidget {
   Widget termsAndConditionsWidget(BuildContext context) {
     return GestureDetector(
       onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
-        Keys.title : AT1Strings.settingsTermsConditions.tr,
+        Keys.title: AT1Strings.settingsTermsConditions.tr,
         Keys.content: _appController.settings.value?.terms
       }),
       child: RichText(
-          text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: AT1Strings.signUpByClicking.tr, style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
-                const TextSpan(text: '  '),
-                TextSpan(text: AT1Strings.settingsTermsConditions.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
-              ]
-          )
-      ),
+          textAlign: TextAlign.center,
+          text: TextSpan(children: <TextSpan>[
+            TextSpan(
+                text: AT1Strings.signUpByClicking.tr,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontFamily: AppTheme.fontVisbyCF,
+                )),
+            const TextSpan(text: '  '),
+            TextSpan(
+                text: AT1Strings.settingsTermsConditions.tr,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontFamily: AppTheme.fontVisbyCF,
+                )),
+          ])),
     );
   }
 
@@ -325,20 +338,27 @@ class SignupScreen extends StatelessWidget {
         Go.off(() => LoginScreen());
       },
       child: RichText(
-          text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: AT1Strings.signUpAlreadyHaveAccount.tr, style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
-                const TextSpan(text: '  '),
-                TextSpan(text: AT1Strings.signIn.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
-              ]
-          )
-      ),
+          text: TextSpan(children: <TextSpan>[
+        TextSpan(
+            text: AT1Strings.signUpAlreadyHaveAccount.tr,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
+              fontFamily: AppTheme.fontVisbyCF,
+            )),
+        const TextSpan(text: '  '),
+        TextSpan(
+            text: AT1Strings.signIn.tr,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontFamily: AppTheme.fontVisbyCF,
+            )),
+      ])),
     );
   }
 
   Widget _buildBottomBar(BuildContext context) {
     return SafeArea(
-        child: Padding(
+      child: Padding(
           padding: const EdgeInsets.only(bottom: 30),
           child: GestureDetector(
             onTap: () {
@@ -346,14 +366,15 @@ class SignupScreen extends StatelessWidget {
             },
             child: FxText.bodySmall(
               AT1Strings.skip.tr,
-              fontSize: 15,
               fontWeight: 300,
               textAlign: TextAlign.center,
               color: Theme.of(context).colorScheme.secondary,
+              style: TextStyle(
+                fontFamily: AppTheme.fontVisbyCF,
+                fontSize: AppTheme.fontVisbyCFSize,
+              ),
             ),
-          )
-        ),
+          )),
     );
   }
-
 }

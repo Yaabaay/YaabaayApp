@@ -137,3 +137,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: VISBYCF
+      fonts:
+        - asset: assets/fonts/VISBYCF-LIGHT.otf
+        - asset: assets/fonts/VISBYCF-MEDIUM.otf
+        - asset: assets/fonts/VISBYCF-REGULAR.otf
+        - asset: assets/fonts/VISBYCF-BOLD.otf
+    - family: AVGARDD
+      fonts:
+        - asset: assets/fonts/AVGARDD.ttf

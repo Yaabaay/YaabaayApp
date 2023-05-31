@@ -3,6 +3,7 @@ import 'package:app/DTOs/Profile/requestRetrieveUserPassword.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/Go.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/screens_bg.dart';
@@ -48,13 +49,15 @@ class ServiceRequestSentScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         decoration: backgroundBoxDecoration(
-            Assets.bgScreen6,
-            boxFit: BoxFit.contain,
-            color: Theme.of(context).colorScheme.background,
+          Assets.bgScreen6,
+          boxFit: BoxFit.contain,
+          color: Theme.of(context).colorScheme.background,
         ),
         child: Column(
           children: [
-            const SizedBox(height: 300.0,),
+            const SizedBox(
+              height: 300.0,
+            ),
             Padding(
               padding: const EdgeInsets.all(30),
               child: _bodyUi(context),
@@ -73,19 +76,27 @@ class ServiceRequestSentScreen extends StatelessWidget {
           fontWeight: 600,
           fontSize: 23,
           textAlign: TextAlign.center,
-          color: Theme.of(context).colorScheme.secondary,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontFamily: AppTheme.fontAVGARDD,
+            fontSize: 25,
+          ),
         ),
         FxSpacing.height(10),
         FxText.bodySmall(
-          Get.arguments?['message'] ?? AT1Strings.ServiceRequestSentSuccessContent.tr,
+          Get.arguments?['message'] ??
+              AT1Strings.ServiceRequestSentSuccessContent.tr,
           textAlign: TextAlign.center,
           fontSize: 15,
-          color: Theme.of(context).colorScheme.secondary,
+          style: TextStyle(
+            fontFamily: AppTheme.fontVisbyCF,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
         ),
         Lottie.asset(
           Assets.successfulLottie,
           width: 400,
-          height:  300,
+          height: 300,
           fit: BoxFit.cover,
           repeat: true,
         ),
@@ -97,31 +108,35 @@ class ServiceRequestSentScreen extends StatelessWidget {
 
   Widget backBtn(BuildContext context) {
     return FxButton.block(
-        backgroundColor: Theme.of(context).primaryColor,
-        padding: FxSpacing.y(12),
-        onPressed:  () async {
-          Get.offAllNamed(HomeScreen.routeName);
-        },
-        elevation: 0,
-        borderRadiusAll: 5,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FxText.bodySmall(
-                AT1Strings.Continue.tr.toUpperCase(),
-                color: Colors.white,
-                fontWeight: 700,
-                letterSpacing: 0.5
-            ),
-            FxSpacing.width(8),
-            TransformWithDirection(context, Icon(
-              FeatherIcons.chevronRight,
-              size: 18,
+      backgroundColor: Theme.of(context).primaryColor,
+      padding: FxSpacing.y(12),
+      onPressed: () async {
+        Get.offAllNamed(HomeScreen.routeName);
+      },
+      elevation: 0,
+      borderRadiusAll: 5,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FxText.bodySmall(
+            AT1Strings.Continue.tr.toUpperCase(),
+            fontWeight: 700,
+            letterSpacing: 0.5,
+            style: TextStyle(
+              fontFamily: AppTheme.fontVisbyCF,
               color: Colors.white,
-            ))
-          ],
-        ),
+            ),
+          ),
+          FxSpacing.width(8),
+          TransformWithDirection(
+              context,
+              Icon(
+                FeatherIcons.chevronRight,
+                size: 18,
+                color: Colors.white,
+              ))
+        ],
+      ),
     );
   }
-
 }

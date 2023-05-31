@@ -6,6 +6,12 @@ class AppTheme {
   static ThemeType themeType = ThemeType.light;
   static TextDirection textDirection = TextDirection.ltr;
 
+  static String fontVisbyCF = 'VISBYCF';
+  static double fontVisbyCFSize = 15;
+
+  static String fontAVGARDD = 'AVGARDD';
+  static double fontAVGARDDSize = 35;
+
   static ThemeData theme = getTheme();
 
   static ThemeData getTheme([ThemeType? themeType]) {
@@ -16,6 +22,7 @@ class AppTheme {
 
   /// -------------------------- Light Theme  -------------------------------------------- ///
   static final ThemeData lightTheme = ThemeData(
+    fontFamily: fontVisbyCF,
 
     /// Brightness
     brightness: Brightness.light,
@@ -48,8 +55,7 @@ class AppTheme {
         secondary: Colors.black54,
         background: Colors.white,
         seedColor: const Color(0xff65B832),
-        brightness: Brightness.light
-    ),
+        brightness: Brightness.light),
 
     /// Input (Text-Field) Theme
     inputDecorationTheme: const InputDecorationTheme(
@@ -77,11 +83,13 @@ class AppTheme {
         foregroundColor: const Color(0xffeeeeee)),
 
     /// Divider Theme
-    dividerTheme: const DividerThemeData(color: Color(0xffe8e8e8), thickness: 1),
+    dividerTheme:
+        const DividerThemeData(color: Color(0xffe8e8e8), thickness: 1),
     dividerColor: const Color(0xffe8e8e8),
 
     /// Bottom AppBar Theme
-    bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xffeeeeee), elevation: 2),
+    bottomAppBarTheme:
+        const BottomAppBarTheme(color: Color(0xffeeeeee), elevation: 2),
 
     /// Tab bar Theme
     tabBarTheme: const TabBarTheme(
@@ -149,7 +157,6 @@ class AppTheme {
       ),
     ),
 
-
     /// Other Colors
     splashColor: Colors.white.withAlpha(100),
     indicatorColor: const Color(0xffeeeeee),
@@ -159,6 +166,8 @@ class AppTheme {
 
   /// -------------------------- Dark Theme  -------------------------------------------- ///
   static final ThemeData darkTheme = ThemeData(
+    fontFamily: fontVisbyCF,
+
     /// Brightness
     brightness: Brightness.dark,
 
@@ -185,8 +194,7 @@ class AppTheme {
         secondary: Colors.white,
         background: Colors.black54,
         seedColor: const Color(0xff65B832),
-        brightness: Brightness.dark
-    ),
+        brightness: Brightness.dark),
 
     /// Input (Text-Field) Theme
     inputDecorationTheme: const InputDecorationTheme(
@@ -206,7 +214,8 @@ class AppTheme {
     ),
 
     /// Divider Color
-    dividerTheme: const DividerThemeData(color: Color(0xff363636), thickness: 1),
+    dividerTheme:
+        const DividerThemeData(color: Color(0xff363636), thickness: 1),
     dividerColor: const Color(0xff363636),
 
     /// Floating Action Theme
@@ -221,7 +230,7 @@ class AppTheme {
 
     /// Bottom AppBar Theme
     bottomAppBarTheme:
-    const BottomAppBarTheme(color: Color(0xff464c52), elevation: 2),
+        const BottomAppBarTheme(color: Color(0xff464c52), elevation: 2),
 
     /// Tab bar Theme
     tabBarTheme: const TabBarTheme(

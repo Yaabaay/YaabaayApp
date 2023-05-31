@@ -4,6 +4,7 @@ import 'package:app/Enums/Shared/keys.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Shared/check_mail.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/Go.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/logger.dart';
@@ -51,13 +52,15 @@ class ForgetPasswordScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         decoration: backgroundBoxDecoration(
-            Assets.bgScreen3,
-            boxFit: BoxFit.contain,
-            color: Theme.of(context).colorScheme.background,
+          Assets.bgScreen3,
+          boxFit: BoxFit.contain,
+          color: Theme.of(context).colorScheme.background,
         ),
         child: Column(
           children: [
-            const SizedBox(height: 20.0,),
+            const SizedBox(
+              height: 20.0,
+            ),
             Padding(
               padding: const EdgeInsets.all(30),
               child: _loginForm(context),
@@ -73,13 +76,22 @@ class ForgetPasswordScreen extends StatelessWidget {
       key: _formKey,
       child: Column(
         children: [
-          const SizedBox(height: 200,),
-          Image.asset(Assets.lock, height: 100,),
+          const SizedBox(
+            height: 200,
+          ),
+          Image.asset(
+            Assets.lock,
+            height: 100,
+          ),
           FxText.displaySmall(
             AT1Strings.forgetPass.tr,
             fontWeight: 600,
             textAlign: TextAlign.center,
             color: Theme.of(context).colorScheme.secondary,
+            style: TextStyle(
+              fontFamily: AppTheme.fontAVGARDD,
+              fontSize: AppTheme.fontAVGARDDSize,
+            ),
           ),
           FxSpacing.height(10),
           FxText.bodySmall(
@@ -87,6 +99,10 @@ class ForgetPasswordScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             fontSize: 15,
             color: Theme.of(context).colorScheme.secondary,
+            style: TextStyle(
+              fontFamily: AppTheme.fontVisbyCF,
+              fontSize: AppTheme.fontVisbyCFSize,
+            ),
           ),
           // Padding(
           //   padding: const EdgeInsets.only(left: 40),
@@ -133,8 +149,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,
-        )
-    );
+        ));
   }
 
   RequestRetrieveUserPasswordDTO _generateDTO() {
@@ -147,7 +162,7 @@ class ForgetPasswordScreen extends StatelessWidget {
     return FxButton.block(
       backgroundColor: Theme.of(context).primaryColor,
       padding: FxSpacing.y(12),
-      onPressed:  () async {
+      onPressed: () async {
         FocusScope.of(context).unfocus();
         ProgressIndicators.loadingDialog();
         try {
@@ -156,8 +171,8 @@ class ForgetPasswordScreen extends StatelessWidget {
           await _authController.requestRetrieveUserPassword(dto);
           //Go to check your mail screen
           Get.offAllNamed(
-              CheckMailScreen.routeName,
-              arguments: { Keys.email: _emailController.text.toLowerCase() },
+            CheckMailScreen.routeName,
+            arguments: {Keys.email: _emailController.text.toLowerCase()},
           );
         } on MessageException catch (error) {
           Get.back();
@@ -170,10 +185,13 @@ class ForgetPasswordScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FxText.bodySmall(
-              AT1Strings.forgetPassReset.tr.toUpperCase(),
+            AT1Strings.forgetPassReset.tr.toUpperCase(),
+            fontWeight: 700,
+            letterSpacing: 0.5,
+            style: TextStyle(
+              fontFamily: AppTheme.fontVisbyCF,
               color: Colors.white,
-              fontWeight: 700,
-              letterSpacing: 0.5
+            ),
           ),
         ],
       ),
@@ -184,12 +202,12 @@ class ForgetPasswordScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.offAllNamed(LoginScreen.routeName),
       child: Text(
-          AT1Strings.backLogin.tr,
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-          )
+        AT1Strings.backLogin.tr,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontFamily: AppTheme.fontVisbyCF,
+            fontSize: AppTheme.fontVisbyCFSize),
       ),
     );
   }
-
 }

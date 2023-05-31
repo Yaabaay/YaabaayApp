@@ -1,5 +1,6 @@
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ class HelpCenterScreen extends StatefulWidget {
 }
 
 class _HelpCenterScreenState extends State<HelpCenterScreen> {
-
   final _appController = Get.find<AppController>();
 
   List<FaqsModel> content = [];
@@ -37,12 +37,14 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if( content.isEmpty ) getFaqs();
+    if (content.isEmpty) getFaqs();
     return Scaffold(
       appBar: AppBar(
-        title: Text(AT1Strings.helpCenter.tr, style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
+        title: Text(AT1Strings.helpCenter.tr,
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.secondary),
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).colorScheme.secondary),
           onPressed: () => Get.back(),
         ),
       ),
@@ -70,9 +72,14 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
       children: [
         Container(
           alignment: Alignment.center,
-          child: Image.asset(Get.isDarkMode ? Assets.appWhiteLogo : Assets.appLogo, height: 80,),
+          child: Image.asset(
+            Get.isDarkMode ? Assets.appWhiteLogo : Assets.appLogo,
+            height: 80,
+          ),
         ),
-        const SizedBox(height: 10.0,),
+        const SizedBox(
+          height: 10.0,
+        ),
         ExpansionPanelList(
           expandedHeaderPadding: const EdgeInsets.all(0),
           expansionCallback: (int index, bool isExpanded) {
@@ -83,7 +90,9 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
           animationDuration: const Duration(milliseconds: 500),
           children: expansionPanelList(),
         ),
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
       ],
     );
   }
@@ -91,34 +100,40 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
   List<ExpansionPanel> expansionPanelList() {
     Debug.d('expansionPanelList called');
     final widgets = <ExpansionPanel>[];
-    if( content.isNotEmpty ){
+    if (content.isNotEmpty) {
       content.asMap().forEach((index, e) => {
-        widgets.add( ExpansionPanel(
-            canTapOnHeader: true,
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return ListTile(
-                title: FxText.titleSmall(e.question ?? "",
-                    color: isExpanded
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.onBackground,
-                    fontWeight: isExpanded ? 600 : 500),
-              );
-            },
-            body: Container(
-              padding:
-              const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-              child: Center(
-                child:
-                FxText.bodyMedium(
-                    e.answer ?? "",
-                    fontWeight: 500,
-                  color: Theme.of(context).colorScheme.secondary,
+            widgets.add(ExpansionPanel(
+                canTapOnHeader: true,
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: FxText.titleSmall(e.question ?? "",
+                        color: isExpanded
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.onBackground,
+                        style: TextStyle(
+                          fontFamily: AppTheme.fontVisbyCF,
+                          fontSize: AppTheme.fontVisbyCFSize,
+                        ),
+                        fontWeight: isExpanded ? 600 : 500),
+                  );
+                },
+                body: Container(
+                  padding:
+                      const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                  child: Center(
+                    child: FxText.bodyMedium(
+                      e.answer ?? "",
+                      fontWeight: 500,
+                      color: Theme.of(context).colorScheme.secondary,
+                      style: TextStyle(
+                        fontFamily: AppTheme.fontVisbyCF,
+                        fontSize: AppTheme.fontVisbyCFSize,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            isExpanded: content[index].isExpanded)
-        )
-      });
+                isExpanded: content[index].isExpanded))
+          });
     }
     return widgets;
   }
@@ -134,5 +149,4 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
       Debug.e(error);
     }
   }
-
 }
