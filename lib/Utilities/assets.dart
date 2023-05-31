@@ -1,5 +1,4 @@
 class Assets {
-
   //Base
   static const root = 'assets';
   static const images = '$root/images';
@@ -51,6 +50,7 @@ class Assets {
   static const bgScreen5 = '$images/bg/screen_bg_5.png';
   static const bgScreen6 = '$images/bg/screen_bg_6.png';
   static const bgContactUs = '$images/contact.png';
+  static const bgMainBottom = '$images/bg/main-bottom-bg.png';
 
   //Menu icons
   static const accountMenu = '$images/account.svg';
@@ -64,12 +64,12 @@ class Assets {
 
   //Lottie
   static const appLogoLottie = '$lottie/app_logo.json';
-  static const profileForgetPasswordLottie = '$lottie/profile-password-unlock.json';
+  static const profileForgetPasswordLottie =
+      '$lottie/profile-password-unlock.json';
   static const successfulLottie = '$lottie/successful.json';
   static const healthyLottie = '$lottie/healthy.json';
 
   //Fonts
 
   //Translations
-
 }

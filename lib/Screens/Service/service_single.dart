@@ -141,7 +141,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
             _servicesData.name!,
             fontSize: 25.0,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Colors.white,
               fontFamily: AppTheme.fontAVGARDD,
               fontSize: AppTheme.fontAVGARDDSize,
               shadows: <Shadow>[
