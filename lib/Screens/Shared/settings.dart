@@ -4,6 +4,7 @@ import 'package:app/Resources/translations.dart';
 import 'package:app/Screens/Shared/about_app.dart';
 import 'package:app/Screens/Shared/content.dart';
 import 'package:app/Screens/Shared/help_center.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Theme/theme_model.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-
   final _appController = Get.find<AppController>();
 
   @override
@@ -34,47 +34,50 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
         builder: (context, ThemeModel themeNotifier, child) {
-          return Scaffold(
-              backgroundColor: Theme.of(context).colorScheme.background,
-              appBar: AppBar(
-                elevation: 0,
-                leading: IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: TransformWithDirection(context, Icon(
-                    FeatherIcons.chevronLeft,
-                    size: 20,
-                    color: Theme.of(context).colorScheme.secondary,
-                  )),
-                ),
-                title: FxText.titleLarge(
-                  AT1Strings.settingsTitle.tr,
-                  fontWeight: 600,
+      return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: TransformWithDirection(
+                context,
+                Icon(
+                  FeatherIcons.chevronLeft,
+                  size: 20,
                   color: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
-              body: ListView(
-                padding: FxSpacing.nTop(20),
-                children: <Widget>[
-                  const SizedBox(height: 20,),
-                  languageWidget(),
-                  dividerWidget(),
-                  themeModeWidget(themeNotifier),
-                  dividerWidget(),
-                  notificationWidget(),
-                  dividerWidget(),
-                  privacyWidget(),
-                  dividerWidget(),
-                  termsWidget(),
-                  dividerWidget(),
-                  helpWidget(),
-                  dividerWidget(),
-                  aboutWidget(),
-                  dividerWidget(),
-                ],
-              ),
-          );
-        }
-    );
+                )),
+          ),
+          title: FxText.titleLarge(
+            AT1Strings.settingsTitle.tr,
+            fontWeight: 600,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+        body: ListView(
+          padding: FxSpacing.nTop(20),
+          children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            languageWidget(),
+            dividerWidget(),
+            themeModeWidget(themeNotifier),
+            dividerWidget(),
+            notificationWidget(),
+            dividerWidget(),
+            privacyWidget(),
+            dividerWidget(),
+            termsWidget(),
+            dividerWidget(),
+            helpWidget(),
+            dividerWidget(),
+            aboutWidget(),
+            dividerWidget(),
+          ],
+        ),
+      );
+    });
     // return Scaffold(
     //     backgroundColor: Theme.of(context).colorScheme.background,
     //     appBar: AppBar(
@@ -116,14 +119,19 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   Widget dividerWidget() {
-    return Divider(thickness: 0.3, color: Theme.of(context).colorScheme.secondary,);
+    return Divider(
+      thickness: 0.3,
+      color: Theme.of(context).colorScheme.secondary,
+    );
   }
+
   Widget languageWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: GestureDetector(
         onTap: () async {
-          bool isArabic = Get.locale?.languageCode == AT1Translations.supportedLanguages.last.locale.languageCode;
+          bool isArabic = Get.locale?.languageCode ==
+              AT1Translations.supportedLanguages.last.locale.languageCode;
           Get.updateLocale(isArabic ? Locale('en', 'US') : Locale('ar', 'EG'));
           await _appController.saveLanguage(Get.locale!.languageCode);
         },
@@ -132,23 +140,27 @@ class _SettingScreenState extends State<SettingScreen> {
           children: <Widget>[
             Container(
               child: Icon(MdiIcons.translate,
-                  size: 24,
-                  color: Theme.of(context).colorScheme.secondary
-              ),
+                  size: 24, color: Theme.of(context).colorScheme.secondary),
             ),
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
                 child: FxText.titleMedium(
-                  AT1Strings.settingsLanguage.tr, fontWeight: 600,
+                  AT1Strings.settingsLanguage.tr,
+                  fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
                   textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child:  FxText.titleSmall(
-                AT1Strings.langName.tr, fontWeight: 600,
+              child: FxText.titleSmall(
+                AT1Strings.langName.tr,
+                fontWeight: 600,
                 color: Theme.of(context).colorScheme.secondary,
                 textDirection: getCurrentTextDirection(context),
               ),
@@ -158,6 +170,7 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
   }
+
   Widget notificationWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
@@ -176,24 +189,31 @@ class _SettingScreenState extends State<SettingScreen> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
-                child:
-                FxText.titleMedium(
-                    AT1Strings.settingsNotifications.tr,
-                    fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
-                    textDirection: getCurrentTextDirection(context),
+                child: FxText.titleMedium(
+                  AT1Strings.settingsNotifications.tr,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
+                  textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: TransformWithDirection(context, Icon(MdiIcons.chevronRight,
-                  size: 24, color: Theme.of(context).colorScheme.secondary))
-              ,
+              child: TransformWithDirection(
+                  context,
+                  Icon(MdiIcons.chevronRight,
+                      size: 24,
+                      color: Theme.of(context).colorScheme.secondary)),
             ),
           ],
         ),
       ),
     );
   }
+
   Widget themeModeWidget(ThemeModel themeNotifier) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
@@ -215,15 +235,23 @@ class _SettingScreenState extends State<SettingScreen> {
                 margin: EdgeInsets.only(left: 16, right: 16),
                 child: FxText.titleMedium(
                   AT1Strings.settingsTheme.tr,
-                  fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
                   textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: Icon(themeNotifier.isDark
+              child: Icon(
+                  themeNotifier.isDark
                       ? Icons.nightlight_round
-                      : Icons.wb_sunny, size: 24, color: Theme.of(context).colorScheme.secondary),
+                      : Icons.wb_sunny,
+                  size: 24,
+                  color: Theme.of(context).colorScheme.secondary),
               // Icon(MdiIcons.chevronRight,
               //     size: 24, color: Theme.of(context).colorScheme.secondary),
             ),
@@ -232,12 +260,13 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
   }
+
   Widget privacyWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: GestureDetector(
         onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
-          Keys.title : AT1Strings.settingsPrivacyPolicy.tr,
+          Keys.title: AT1Strings.settingsPrivacyPolicy.tr,
           Keys.content: _appController.settings.value?.privacy
         }),
         child: Row(
@@ -250,16 +279,25 @@ class _SettingScreenState extends State<SettingScreen> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
-                child: FxText.titleMedium(AT1Strings.settingsPrivacyPolicy.tr,
-                  fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
+                child: FxText.titleMedium(
+                  AT1Strings.settingsPrivacyPolicy.tr,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
                   textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: TransformWithDirection(context, Icon(MdiIcons.chevronRight,
-                  size: 24, color: Theme.of(context).colorScheme.secondary,
-                  textDirection: getCurrentTextDirection(context)),
+              child: TransformWithDirection(
+                context,
+                Icon(MdiIcons.chevronRight,
+                    size: 24,
+                    color: Theme.of(context).colorScheme.secondary,
+                    textDirection: getCurrentTextDirection(context)),
               ),
             ),
           ],
@@ -267,12 +305,13 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
   }
+
   Widget termsWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: GestureDetector(
         onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
-          Keys.title : AT1Strings.settingsTermsConditions.tr,
+          Keys.title: AT1Strings.settingsTermsConditions.tr,
           Keys.content: _appController.settings.value?.terms
         }),
         child: Row(
@@ -285,22 +324,33 @@ class _SettingScreenState extends State<SettingScreen> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
-                child: FxText.titleMedium(AT1Strings.settingsTermsConditions.tr,
-                    fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
-                    textDirection: getCurrentTextDirection(context),
+                child: FxText.titleMedium(
+                  AT1Strings.settingsTermsConditions.tr,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
+                  textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: TransformWithDirection(context, Icon(MdiIcons.chevronRight,
-                size: 24, color: Theme.of(context).colorScheme.secondary,
-              )),
+              child: TransformWithDirection(
+                  context,
+                  Icon(
+                    MdiIcons.chevronRight,
+                    size: 24,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )),
             ),
           ],
         ),
       ),
     );
   }
+
   Widget helpWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
@@ -318,22 +368,32 @@ class _SettingScreenState extends State<SettingScreen> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
-                child: FxText.titleMedium(AT1Strings.settingsHelpSupport.tr,
-                    fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
+                child: FxText.titleMedium(
+                  AT1Strings.settingsHelpSupport.tr,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
                   textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: TransformWithDirection(context, Icon(MdiIcons.chevronRight,
-                  size: 24, color: Theme.of(context).colorScheme.secondary)),
+              child: TransformWithDirection(
+                  context,
+                  Icon(MdiIcons.chevronRight,
+                      size: 24,
+                      color: Theme.of(context).colorScheme.secondary)),
             ),
           ],
         ),
       ),
     );
   }
-  Widget aboutWidget(){
+
+  Widget aboutWidget() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: GestureDetector(
@@ -348,15 +408,24 @@ class _SettingScreenState extends State<SettingScreen> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
-                child: FxText.titleMedium(AT1Strings.settingsAbout.tr,
-                    fontWeight: 600, color: Theme.of(context).colorScheme.secondary,
-                    textDirection: getCurrentTextDirection(context),
+                child: FxText.titleMedium(
+                  AT1Strings.settingsAbout.tr,
+                  fontWeight: 600,
+                  color: Theme.of(context).colorScheme.secondary,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontVisbyCF,
+                    fontSize: AppTheme.fontVisbyCFSize,
+                  ),
+                  textDirection: getCurrentTextDirection(context),
                 ),
               ),
             ),
             Container(
-              child: TransformWithDirection(context, Icon(MdiIcons.chevronRight,
-                  size: 24, color: Theme.of(context).colorScheme.secondary)),
+              child: TransformWithDirection(
+                  context,
+                  Icon(MdiIcons.chevronRight,
+                      size: 24,
+                      color: Theme.of(context).colorScheme.secondary)),
             ),
           ],
         ),

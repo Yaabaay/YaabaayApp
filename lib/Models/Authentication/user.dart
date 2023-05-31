@@ -6,9 +6,9 @@ class User {
   static const _tokenKey = 'token';
   static const _avatarKey = 'avatar';
 
-  final String? id;
-  final String? name;
-  final String? email;
+  final String id;
+  final String name;
+  final String email;
   final String? mobile;
   final String? token;
 

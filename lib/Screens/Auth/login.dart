@@ -2,6 +2,7 @@ import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Auth/signup.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:app/Utilities/transform_direction.dart';
@@ -84,8 +85,11 @@ class LoginScreen extends StatelessWidget {
             width: Get.width,
             child: FxText.displaySmall(
               AT1Strings.signInTitle.tr,
-              fontWeight: 600,
               textAlign: TextAlign.start,
+              style: TextStyle(
+                fontFamily: AppTheme.fontAVGARDD,
+                fontSize: AppTheme.fontAVGARDDSize,
+              ),
               color: Theme.of(context).colorScheme.secondary,
               textDirection: getCurrentTextDirection(context),
             ),
@@ -188,6 +192,7 @@ class LoginScreen extends StatelessWidget {
         child: FxText.bodySmall(
           AT1Strings.signInForgotPassword.tr,
           color: Theme.of(context).colorScheme.secondary,
+          style: TextStyle(fontFamily: AppTheme.fontVisbyCF),
         ),
       ),
     );
@@ -224,9 +229,12 @@ class LoginScreen extends StatelessWidget {
         children: [
           FxText.bodySmall(
             AT1Strings.signInTitle.tr.toUpperCase(),
-            color: Colors.white,
             fontWeight: 700,
             letterSpacing: 0.5,
+            style: TextStyle(
+              fontFamily: AppTheme.fontVisbyCF,
+              color: Colors.white,
+            ),
           ),
           FxSpacing.width(8),
           TransformWithDirection(
@@ -248,16 +256,24 @@ class LoginScreen extends StatelessWidget {
       },
       child: RichText(
           text: TextSpan(
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                fontFamily: AppTheme.fontVisbyCF,
+              ),
               children: <TextSpan>[
             TextSpan(
                 text: AT1Strings.signInDontHaveAccount.tr,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.secondary)),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                )),
             const TextSpan(text: '  '),
             TextSpan(
-                text: AT1Strings.signUp.tr,
-                style: TextStyle(color: Theme.of(context).primaryColor)),
+              text: AT1Strings.signUp.tr,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontFamily: AppTheme.fontVisbyCF,
+              ),
+            ),
           ])),
     );
   }
@@ -275,7 +291,10 @@ class LoginScreen extends StatelessWidget {
               fontSize: 15,
               fontWeight: 300,
               textAlign: TextAlign.center,
-              color: Theme.of(context).colorScheme.secondary,
+              style: TextStyle(
+                fontFamily: AppTheme.fontVisbyCF,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
           )),
     );

@@ -31,9 +31,6 @@ abstract class PushNotifications {
     final info = jsonDecode(jsonEncode(data));
     Debug.d('additionalData 2: $info');
     if (info == null) return;
-    // final type = info[_typeKey]?.toLowerCase();
-    // if (type == null) return;
-    // await _handleNotificationType(type, info);
   }
 
   static Future<void> _handleNotificationType(String type, Map data) async {

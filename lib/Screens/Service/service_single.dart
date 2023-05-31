@@ -3,6 +3,7 @@ import 'package:app/DTOs/Service/service_order.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Service/service_request.dart';
 import 'package:app/Screens/Service/service_request_sent.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/confim_dialog.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/transform_direction.dart';
@@ -138,8 +139,19 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
           titlePadding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           title: FxText.bodyMedium(
             _servicesData.name!,
-            color: Theme.of(context).colorScheme.secondary,
             fontSize: 25.0,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
+              fontFamily: AppTheme.fontAVGARDD,
+              fontSize: AppTheme.fontAVGARDDSize,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(0, 0),
+                  blurRadius: 12.0,
+                  color: Color.fromARGB(255, 0, 0, 0).withAlpha(200),
+                ),
+              ],
+            ),
           ),
           background: CachedImage(
             url: '${Urls.s3Url}${_servicesData.background}',
@@ -161,15 +173,37 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
 
   Widget floatingButton(AuthenticationController authenticationController,
       ServicesData servicesData) {
-    return FloatingActionButton(
-        elevation: 3.0,
-        backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () async =>
-            await sendRequest(authenticationController, servicesData),
-        child: const Icon(
-          Icons.add,
+    return FloatingActionButton.extended(
+      label: Row(children: [
+        const Icon(
+          Icons.message,
           color: Colors.white,
-        ));
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Text(AT1Strings.freeConsultation.tr),
+      ]),
+      backgroundColor: Theme.of(context).primaryColor,
+      onPressed: () async =>
+          await sendRequest(authenticationController, servicesData),
+    );
+    /**
+     * Old FloatingActionButton
+     */
+    // return FloatingActionButton(
+    //   elevation: 3.0,
+    //   backgroundColor: Theme.of(context).primaryColor,
+    //   onPressed: () async =>
+    //       await sendRequest(authenticationController, servicesData),
+    //   child: Row(children: [
+    //     const Icon(
+    //       Icons.add,
+    //       color: Colors.white,
+    //     ),
+    //     Text('free consultation')
+    //   ]),
+    // );
   }
 
   /// Services
@@ -259,6 +293,10 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
                   fontWeight: 600,
                   letterSpacing: 0,
                   color: Colors.white,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontAVGARDD,
+                    fontSize: 15,
+                  ),
                 ),
                 FxSpacing.height(4),
                 // FxText.bodyMedium('',

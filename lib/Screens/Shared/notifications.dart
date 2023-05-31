@@ -1,6 +1,7 @@
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -28,10 +29,10 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AT1Strings.Notifications.tr,
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary)
-        ),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.secondary),
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).colorScheme.secondary),
           onPressed: () => Get.back(),
         ),
       ),
@@ -57,17 +58,23 @@ class NotificationsScreen extends StatelessWidget {
   Widget _bodyUi(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 100.0,),
+        const SizedBox(
+          height: 100.0,
+        ),
         FxText.displaySmall(
           AT1Strings.NotificationsStay.tr,
           fontWeight: 600,
           textAlign: TextAlign.center,
           color: Theme.of(context).colorScheme.secondary,
+          style: TextStyle(
+            fontFamily: AppTheme.fontAVGARDD,
+            fontSize: AppTheme.fontAVGARDDSize,
+          ),
         ),
         Lottie.asset(
           Assets.healthyLottie,
           width: 400,
-          height:  300,
+          height: 300,
           fit: BoxFit.cover,
           repeat: true,
         ),
@@ -77,6 +84,10 @@ class NotificationsScreen extends StatelessWidget {
           textAlign: TextAlign.center,
           fontSize: 20,
           color: Theme.of(context).colorScheme.secondary,
+          style: TextStyle(
+            fontFamily: AppTheme.fontVisbyCF,
+            fontSize: AppTheme.fontVisbyCFSize,
+          ),
         ),
       ],
     );
@@ -84,30 +95,25 @@ class NotificationsScreen extends StatelessWidget {
 
   Widget backBtn(BuildContext context) {
     return FxButton.block(
-        backgroundColor: Theme.of(context).primaryColor,
-        padding: FxSpacing.y(12),
-        onPressed:  () async {
-          Get.offAllNamed(HomeScreen.routeName);
-        },
-        elevation: 0,
-        borderRadiusAll: 5,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FxText.bodySmall(
-                AT1Strings.Continue.tr.toUpperCase(),
-                color: Colors.white,
-                fontWeight: 700,
-                letterSpacing: 0.5
-            ),
-            FxSpacing.width(8),
-            const Icon(
-              FeatherIcons.chevronRight,
-              size: 18,
-            )
-          ],
-        ),
+      backgroundColor: Theme.of(context).primaryColor,
+      padding: FxSpacing.y(12),
+      onPressed: () async {
+        Get.offAllNamed(HomeScreen.routeName);
+      },
+      elevation: 0,
+      borderRadiusAll: 5,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FxText.bodySmall(AT1Strings.Continue.tr.toUpperCase(),
+              color: Colors.white, fontWeight: 700, letterSpacing: 0.5),
+          FxSpacing.width(8),
+          const Icon(
+            FeatherIcons.chevronRight,
+            size: 18,
+          )
+        ],
+      ),
     );
   }
-
 }

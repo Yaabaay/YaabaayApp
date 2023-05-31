@@ -4,6 +4,7 @@ import 'package:app/Models/Service/ServicesData.dart';
 import 'package:app/Screens/Drawer/side_menu.dart';
 import 'package:app/Screens/Service/service_single.dart';
 import 'package:app/Screens/Shared/notifications.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/cached_image_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -27,7 +28,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _appController = Get.find<AppController>();
 
@@ -50,27 +50,29 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-
     /// New Home screen
     return Stack(
-        children: [
-          Positioned(child: slider(context)),
-          Positioned(child: Container(
-            color: Theme.of(context).colorScheme.background,
+      children: [
+        Positioned(child: slider(context)),
+        Positioned(
+          child: Container(
+            //color: Theme.of(context).colorScheme.background,
             margin: const EdgeInsets.only(top: 270),
             child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     services(context),
-                    const SizedBox(height: 30,),
+                    const SizedBox(
+                      height: 30,
+                    ),
                   ],
-                )
-            ),
-          ),),
-          Positioned(child: topBar(context)),
-        ],
-      );
+                )),
+          ),
+        ),
+        Positioned(child: topBar(context)),
+      ],
+    );
 
     /// Old Home screen
     // return Column(
@@ -96,10 +98,27 @@ class _HomeScreenState extends State<HomeScreen> {
   /// top Bar
   Widget topBar(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 50),
-      padding: const EdgeInsets.only(right: 15, left: 15, bottom: 10),
+      margin: const EdgeInsets.only(top: 0),
+      padding: const EdgeInsets.only(top: 40, right: 15, left: 15, bottom: 10),
       width: Get.width,
-      height: 50,
+      height: 75,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [
+              0.2,
+              0.3,
+              0.6,
+              0.8,
+            ],
+            colors: [
+              Colors.white54,
+              Colors.white54,
+              Colors.white10,
+              Colors.transparent,
+            ]),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -108,18 +127,28 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () => _scaffoldKey.currentState?.openDrawer(),
-                child: SvgPicture.asset(Assets.menu, height: 27,),
-              )
-          ),
+                child: SvgPicture.asset(
+                  Assets.menu,
+                  height: 27,
+                  color: Colors.white,
+                ),
+              )),
           Container(
             alignment: Alignment.center,
-            child: Image.asset(Assets.appLogo, height: 60,),
+            child: Image.asset(
+              Assets.appWhiteLogo,
+              height: 60,
+            ),
           ),
           Container(
             alignment: Alignment.centerRight,
             child: GestureDetector(
               onTap: () => Get.toNamed(NotificationsScreen.routeName),
-              child: SvgPicture.asset(Assets.notification, height: 30,),
+              child: SvgPicture.asset(
+                Assets.notification,
+                height: 30,
+                color: Colors.white,
+              ),
             ),
           )
         ],
@@ -130,12 +159,13 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Slider
   Widget slider(BuildContext context) {
     return Obx(() {
-      if( _appController.sliderItems.isNotEmpty ) {
+      if (_appController.sliderItems.isNotEmpty) {
         return CarouselSlider(
           options: CarouselOptions(
             height: 320.0,
             viewportFraction: 1,
-            enableInfiniteScroll: _appController.sliderItems.length > 1 ? true : false,
+            enableInfiniteScroll:
+                _appController.sliderItems.length > 1 ? true : false,
             reverse: false,
             autoPlay: _appController.sliderItems.length > 1 ? true : false,
             autoPlayInterval: const Duration(seconds: 6),
@@ -151,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: const BorderRadius.all(Radius.circular(0))),
                   child: GestureDetector(
                     onTap: () {
-                      Debug.d("slider item clicked ${item.toJson()}");
+                      //Debug.d("slider item clicked ${item.toJson()}");
                     },
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(0)),
@@ -167,21 +197,22 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }).toList(),
         );
-      }else{
+      } else {
         return Container(
           width: Get.width,
           height: 320.0,
           margin: const EdgeInsets.symmetric(horizontal: 0),
           child: Image.asset(
-              Assets.homeBg,
-              fit: BoxFit.fill,
-              alignment: Alignment.topCenter,
+            Assets.homeBg,
+            fit: BoxFit.fill,
+            alignment: Alignment.topCenter,
           ),
         );
       }
       return Container();
     });
   }
+
   Future getSliderData(BuildContext context) async {
     try {
       await _appController.getSliders();
@@ -194,24 +225,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget services(BuildContext context) {
     //@ignore:
     return Obx(() => Container(
-      color: Theme.of(context).colorScheme.background,
-      margin: const EdgeInsets.only(right: 10, left: 10),
-      width: Get.width,
-      child: GridView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: _appController.servicesItems.length,
-        itemBuilder: (context, index) {
-          return serviceItem(_appController.servicesItems[index]);
-        },
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 200,
-        ),
-      ),
-    ));
+          //color: Theme.of(context).colorScheme.background,
+          margin: const EdgeInsets.only(right: 10, left: 10),
+          width: Get.width,
+          child: GridView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _appController.servicesItems.length,
+            itemBuilder: (context, index) {
+              return serviceItem(_appController.servicesItems[index]);
+            },
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisExtent: 200,
+            ),
+          ),
+        ));
   }
+
   Widget serviceItem(ServicesData servicesData) {
     return FxContainer(
       color: Theme.of(context).colorScheme.background,
@@ -230,7 +262,10 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 0,
             top: 0,
             right: 0,
-            child: CachedImage(url: '${Urls.s3Url}${servicesData.logo}', color: Theme.of(context).primaryColor,),
+            child: CachedImage(
+              url: '${Urls.s3Url}${servicesData.logo}',
+              color: Theme.of(context).primaryColor,
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -240,19 +275,32 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 200,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               padding: FxSpacing.zero,
-              decoration: const BoxDecoration(
-                // gradient: LinearGradient(
-                //     begin: Alignment.bottomCenter,
-                //     end: Alignment.topCenter,
-                //     colors: [
-                //       Colors.black.withAlpha(200),
-                //       Colors.black.withAlpha(160),
-                //       Colors.black.withAlpha(120),
-                //       Colors.black.withAlpha(80),
-                //       Colors.transparent
-                //     ],
-                //     stops: const [0.1, 0.25, 0.5, 0.7, 1]
-                // ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: Get.isDarkMode
+                        ? [
+                            Colors.white.withAlpha(200),
+                            Colors.white.withAlpha(160),
+                            Colors.white.withAlpha(120),
+                            Colors.white.withAlpha(10),
+                            Colors.transparent
+                          ]
+                        : [
+                            Colors.black.withAlpha(200),
+                            Colors.black.withAlpha(160),
+                            Colors.black.withAlpha(120),
+                            Colors.black.withAlpha(10),
+                            Colors.transparent
+                          ],
+                    stops: const [
+                      0.1,
+                      0.23,
+                      0.4,
+                      0.6,
+                      1,
+                    ]),
               ),
             ),
           ),
@@ -269,6 +317,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: 600,
                   letterSpacing: 0,
                   color: Colors.white,
+                  style: TextStyle(
+                    fontFamily: AppTheme.fontAVGARDD,
+                    fontSize: 25,
+                    color: Get.isDarkMode ? Colors.grey[800] : Colors.white,
+                  ),
                 ),
                 FxSpacing.height(4),
                 // FxText.bodyMedium('',
@@ -282,5 +335,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }
