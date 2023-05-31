@@ -40,12 +40,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     if (_appController.sliderItems.isEmpty) _appController.getSliders();
     if (_appController.servicesItems.isEmpty) _appController.getAllServices();
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      key: _scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.background,
-      drawer: SideMenu(),
-      body: _buildBody(context),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Assets.bgMainBottom),
+          fit: BoxFit.contain,
+          alignment: Alignment.bottomRight,
+        ),
+        color: Theme.of(context).colorScheme.background,
+      ),
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        key: _scaffoldKey,
+        backgroundColor: Colors.transparent,
+        drawer: SideMenu(),
+        body: _buildBody(context),
+      ),
     );
   }
 
@@ -226,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //@ignore:
     return Obx(() => Container(
           //color: Theme.of(context).colorScheme.background,
-          margin: const EdgeInsets.only(right: 10, left: 10),
+          margin: const EdgeInsets.only(top: 50, right: 10, left: 10),
           width: Get.width,
           child: GridView.builder(
             shrinkWrap: true,
@@ -267,43 +277,44 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Theme.of(context).primaryColor,
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 200,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              padding: FxSpacing.zero,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: Get.isDarkMode
-                        ? [
-                            Colors.white.withAlpha(200),
-                            Colors.white.withAlpha(160),
-                            Colors.white.withAlpha(120),
-                            Colors.white.withAlpha(10),
-                            Colors.transparent
-                          ]
-                        : [
-                            Colors.black.withAlpha(200),
-                            Colors.black.withAlpha(160),
-                            Colors.black.withAlpha(120),
-                            Colors.black.withAlpha(10),
-                            Colors.transparent
-                          ],
-                    stops: const [
-                      0.1,
-                      0.23,
-                      0.4,
-                      0.6,
-                      1,
-                    ]),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   bottom: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child: Container(
+          //     height: 200,
+          //     clipBehavior: Clip.antiAliasWithSaveLayer,
+          //     padding: FxSpacing.zero,
+          //     decoration: BoxDecoration(
+          //       gradient: LinearGradient(
+          //         begin: Alignment.bottomCenter,
+          //         end: Alignment.topCenter,
+          //         colors: Get.isDarkMode
+          //             ? [
+          //                 Colors.white.withAlpha(200),
+          //                 Colors.white.withAlpha(160),
+          //                 Colors.white.withAlpha(120),
+          //                 Colors.white.withAlpha(10),
+          //                 Colors.transparent
+          //               ]
+          //             : [
+          //                 Colors.black.withAlpha(200),
+          //                 Colors.black.withAlpha(160),
+          //                 Colors.black.withAlpha(120),
+          //                 Colors.black.withAlpha(10),
+          //                 Colors.transparent
+          //               ],
+          //         stops: const [
+          //           0.1,
+          //           0.23,
+          //           0.4,
+          //           0.6,
+          //           1,
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Positioned(
             left: 20,
             right: 20,
@@ -320,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontFamily: AppTheme.fontAVGARDD,
                     fontSize: 25,
-                    color: Get.isDarkMode ? Colors.grey[800] : Colors.white,
+                    color: Colors.white,
                   ),
                 ),
                 FxSpacing.height(4),
