@@ -16,6 +16,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Utilities/logger.dart';
 import '../Profile/edit_profile.dart';
@@ -84,7 +85,9 @@ class SideMenu extends StatelessWidget {
                       : AT1Strings.menuWelcome.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontAVGARDD,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontAVGARDD,
                     fontSize: 20,
                   ),
                   color: Theme.of(context).colorScheme.secondary,
@@ -201,7 +204,11 @@ class SideMenu extends StatelessWidget {
               fontSize: 18,
               fontWeight: 600,
               color: iconColor,
-              style: TextStyle(fontFamily: AppTheme.fontVisbyCF),
+              style: TextStyle(
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
+              ),
             ),
           ],
         ),
@@ -233,7 +240,7 @@ class SideMenu extends StatelessWidget {
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                   borderRadius: const BorderRadius.all(Radius.circular(16.0))),
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -247,6 +254,11 @@ class SideMenu extends StatelessWidget {
                           Text(
                             AT1Strings.menuFollowYaaBaayApp.tr,
                             textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: Helpers.isRtl()
+                                  ? GoogleFonts.almarai().fontFamily
+                                  : AppTheme.fontVisbyCF,
+                            ),
                           ),
                           Row(
                             children: <Widget>[
@@ -343,7 +355,11 @@ class SideMenu extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: FxText.labelMedium(
-              style: TextStyle(fontFamily: AppTheme.fontVisbyCF),
+              style: TextStyle(
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
+              ),
               actionText,
               color: Theme.of(context).colorScheme.secondary,
             ),

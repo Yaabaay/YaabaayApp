@@ -1,7 +1,7 @@
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Helpers {
-
   /// open a web browser (URL)
   static Future<void> launchURL(String url) async {
     final uri = Uri.parse(url);
@@ -12,4 +12,7 @@ class Helpers {
     }
   }
 
+  static bool isRtl() {
+    return Get.locale?.languageCode == 'ar' ? true : false;
+  }
 }

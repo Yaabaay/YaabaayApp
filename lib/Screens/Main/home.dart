@@ -7,6 +7,7 @@ import 'package:app/Screens/Shared/notifications.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/cached_image_widget.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +15,7 @@ import 'package:flutx/utils/spacing.dart';
 import 'package:flutx/widgets/container/container.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Models/Shared/message_exception.dart';
 import '../../Utilities/logger.dart';
@@ -324,15 +326,18 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 FxSpacing.height(16),
                 FxText.titleLarge(
-                  '${servicesData.name}',
+                  '${servicesData.name?.getTran()}',
                   fontWeight: 600,
                   letterSpacing: 0,
                   color: Colors.white,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontAVGARDD,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontAVGARDD,
                     fontSize: 25,
                     color: Colors.white,
                   ),
+                  textAlign: Helpers.isRtl() ? TextAlign.right : TextAlign.left,
                 ),
                 FxSpacing.height(4),
                 // FxText.bodyMedium('',

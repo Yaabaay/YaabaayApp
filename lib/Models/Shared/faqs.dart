@@ -1,18 +1,26 @@
 import 'dart:convert';
 
-List<FaqsModel> faqsDataFromJson(String str) => List<FaqsModel>.from(json.decode(str).map((x) => FaqsModel.fromJson(x)));
-String faqsDataToJson(List<FaqsModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+import 'package:app/Models/Shared/translation.dart';
+import 'package:app/Utilities/logger.dart';
+
+List<FaqsModel> faqsDataFromJson(String str) =>
+    List<FaqsModel>.from(json.decode(str).map((x) => FaqsModel.fromJson(x)));
+String faqsDataToJson(List<FaqsModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class FaqsModel {
-  String? question;
-  String? answer;
+  TranslationData? question;
+  TranslationData? answer;
   bool isExpanded = false;
 
-  FaqsModel({this.question, this.answer,});
+  FaqsModel({
+    this.question,
+    this.answer,
+  });
 
   FaqsModel.fromJson(Map<String, dynamic> json) {
-    question = json['question'];
-    answer = json['answer'];
+    question = TranslationData.fromJson(json['question']);
+    answer = TranslationData.fromJson(json['answer']);
   }
 
   Map<String, dynamic> toJson() {

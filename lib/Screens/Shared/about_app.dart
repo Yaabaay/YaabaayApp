@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:app/Controllers/app_controller.dart';
+import 'package:app/Models/Shared/translation.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
+import 'package:app/Utilities/helpers.dart';
+import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -10,6 +16,7 @@ import 'package:flutx/utils/spacing.dart';
 import 'package:flutx/widgets/button/button.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class AboutAppScreen extends StatelessWidget {
@@ -31,10 +38,18 @@ class AboutAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AT1Strings.aboutYaabaay.tr,
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
+        title: Text(
+          AT1Strings.aboutYaabaay.tr,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontFamily: Helpers.isRtl()
+                ? GoogleFonts.almarai().fontFamily
+                : AppTheme.fontVisbyCF,
+          ),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.secondary),
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).colorScheme.secondary),
           onPressed: () => Get.back(),
         ),
       ),
@@ -62,18 +77,29 @@ class AboutAppScreen extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.center,
-          child: Image.asset(Get.isDarkMode ? Assets.appWhiteLogo : Assets.appLogo, height: 80,),
+          child: Image.asset(
+            Get.isDarkMode ? Assets.appWhiteLogo : Assets.appLogo,
+            height: 80,
+          ),
         ),
-        const SizedBox(height: 20.0,),
-        Html(data: """${_appController.settings.value?.about}""", style: {
-          "*" : Style(
-            fontSize: FontSize.large,
-            textAlign: TextAlign.justify,
-          )
-        }),
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
+        Html(
+            data: """${_appController.settings.value?.about?.getTran()}""",
+            style: {
+              "*": Style(
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
+                fontSize: FontSize.large,
+                textAlign: TextAlign.justify,
+              )
+            }),
+        const SizedBox(
+          height: 20.0,
+        ),
       ],
     );
   }
-
 }

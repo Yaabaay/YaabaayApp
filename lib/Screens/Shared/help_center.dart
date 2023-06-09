@@ -2,10 +2,12 @@ import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Models/Shared/faqs.dart';
 import '../../Models/Shared/message_exception.dart';
@@ -40,8 +42,15 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
     if (content.isEmpty) getFaqs();
     return Scaffold(
       appBar: AppBar(
-        title: Text(AT1Strings.helpCenter.tr,
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
+        title: Text(
+          AT1Strings.helpCenter.tr,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontFamily: Helpers.isRtl()
+                ? GoogleFonts.almarai().fontFamily
+                : AppTheme.fontVisbyCF,
+          ),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back,
               color: Theme.of(context).colorScheme.secondary),
@@ -106,14 +115,18 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                 canTapOnHeader: true,
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return ListTile(
-                    title: FxText.titleSmall(e.question ?? "",
+                    title: FxText.titleSmall(e.question?.getTran() ?? "",
                         color: isExpanded
                             ? Theme.of(context).colorScheme.primary
                             : Theme.of(context).colorScheme.onBackground,
                         style: TextStyle(
-                          fontFamily: AppTheme.fontVisbyCF,
+                          fontFamily: Helpers.isRtl()
+                              ? GoogleFonts.almarai().fontFamily
+                              : AppTheme.fontVisbyCF,
                           fontSize: AppTheme.fontVisbyCFSize,
                         ),
+                        textAlign:
+                            Helpers.isRtl() ? TextAlign.right : TextAlign.left,
                         fontWeight: isExpanded ? 600 : 500),
                   );
                 },
@@ -122,11 +135,13 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                       const EdgeInsets.only(bottom: 20, left: 20, right: 20),
                   child: Center(
                     child: FxText.bodyMedium(
-                      e.answer ?? "",
+                      e.answer?.getTran() ?? "",
                       fontWeight: 500,
                       color: Theme.of(context).colorScheme.secondary,
                       style: TextStyle(
-                        fontFamily: AppTheme.fontVisbyCF,
+                        fontFamily: Helpers.isRtl()
+                            ? GoogleFonts.almarai().fontFamily
+                            : AppTheme.fontVisbyCF,
                         fontSize: AppTheme.fontVisbyCFSize,
                       ),
                     ),
