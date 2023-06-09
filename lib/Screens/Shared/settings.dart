@@ -6,11 +6,14 @@ import 'package:app/Screens/Shared/content.dart';
 import 'package:app/Screens/Shared/help_center.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Theme/theme_model.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/transform_direction.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutx/flutx.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +54,12 @@ class _SettingScreenState extends State<SettingScreen> {
           title: FxText.titleLarge(
             AT1Strings.settingsTitle.tr,
             fontWeight: 600,
-            color: Theme.of(context).colorScheme.secondary,
+            style: TextStyle(
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
         ),
         body: ListView(
@@ -130,10 +138,7 @@ class _SettingScreenState extends State<SettingScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: GestureDetector(
         onTap: () async {
-          bool isArabic = Get.locale?.languageCode ==
-              AT1Translations.supportedLanguages.last.locale.languageCode;
-          Get.updateLocale(isArabic ? Locale('en', 'US') : Locale('ar', 'EG'));
-          await _appController.saveLanguage(Get.locale!.languageCode);
+          _showSheet();
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +155,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -194,7 +201,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -238,7 +247,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -267,7 +278,7 @@ class _SettingScreenState extends State<SettingScreen> {
       child: GestureDetector(
         onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
           Keys.title: AT1Strings.settingsPrivacyPolicy.tr,
-          Keys.content: _appController.settings.value?.privacy
+          Keys.content: _appController.settings.value?.privacy?.getTran()
         }),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -284,7 +295,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -312,7 +325,7 @@ class _SettingScreenState extends State<SettingScreen> {
       child: GestureDetector(
         onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
           Keys.title: AT1Strings.settingsTermsConditions.tr,
-          Keys.content: _appController.settings.value?.terms
+          Keys.content: _appController.settings.value?.terms?.getTran()
         }),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -329,7 +342,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -373,7 +388,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -413,7 +430,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   fontWeight: 600,
                   color: Theme.of(context).colorScheme.secondary,
                   style: TextStyle(
-                    fontFamily: AppTheme.fontVisbyCF,
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
                     fontSize: AppTheme.fontVisbyCFSize,
                   ),
                   textDirection: getCurrentTextDirection(context),
@@ -432,4 +451,108 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
   }
+
+  _showSheet() {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoActionSheet(
+              title: FxText.titleLarge(
+                AT1Strings.settingsLanguage.tr,
+                fontWeight: 700,
+                letterSpacing: 0.5,
+                style: TextStyle(
+                  fontFamily: Helpers.isRtl()
+                      ? GoogleFonts.almarai().fontFamily
+                      : AppTheme.fontAVGARDD,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+              message: FxText.titleSmall(
+                AT1Strings.settingsSelectLanguage.tr,
+                fontWeight: 500,
+                letterSpacing: 0.2,
+                style: TextStyle(
+                  fontFamily: Helpers.isRtl()
+                      ? GoogleFonts.almarai().fontFamily
+                      : AppTheme.fontVisbyCF,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+              actions: <Widget>[
+                if (Get.locale!.languageCode != 'en')
+                  CupertinoActionSheetAction(
+                    child: FxText.bodyLarge(
+                      "English",
+                      fontWeight: 600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    onPressed: () async {
+                      Get.updateLocale(Locale('en', 'EN'));
+                      await _appController
+                          .saveLanguage(Get.locale!.languageCode);
+                      Navigator.pop(context);
+                    },
+                  ),
+                if (Get.locale!.languageCode != 'fr')
+                  CupertinoActionSheetAction(
+                    child: FxText.bodyLarge(
+                      "Français",
+                      fontWeight: 600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    onPressed: () async {
+                      Get.updateLocale(Locale('fr', 'FR'));
+                      await _appController
+                          .saveLanguage(Get.locale!.languageCode);
+                      Navigator.pop(context);
+                    },
+                  ),
+                if (Get.locale!.languageCode != 'tr')
+                  CupertinoActionSheetAction(
+                    child: FxText.bodyLarge(
+                      "Türkçe",
+                      fontWeight: 600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    onPressed: () async {
+                      Get.updateLocale(Locale('tr', 'TR'));
+                      await _appController
+                          .saveLanguage(Get.locale!.languageCode);
+                      Navigator.pop(context);
+                    },
+                  ),
+                if (Get.locale!.languageCode != 'ar')
+                  CupertinoActionSheetAction(
+                    child: FxText.bodyLarge(
+                      "عربي",
+                      fontWeight: 600,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    onPressed: () async {
+                      Get.updateLocale(Locale('ar', 'AR'));
+                      await _appController
+                          .saveLanguage(Get.locale!.languageCode);
+                      Navigator.pop(context);
+                    },
+                  ),
+              ],
+              cancelButton: CupertinoActionSheetAction(
+                child: FxText.titleMedium(
+                  AT1Strings.dismiss.tr,
+                  fontWeight: 600,
+                  style: TextStyle(
+                    fontFamily: Helpers.isRtl()
+                        ? GoogleFonts.almarai().fontFamily
+                        : AppTheme.fontVisbyCF,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ));
+  }
+
+//
 }

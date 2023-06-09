@@ -4,6 +4,7 @@ import 'package:app/Screens/Auth/signup.dart';
 import 'package:app/Screens/Main/home.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:flutx/utils/spacing.dart';
 import 'package:flutx/widgets/button/button.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Controllers/authentication_controller.dart';
 import '../../DTOs/Authentication/login.dart';
@@ -87,7 +89,9 @@ class LoginScreen extends StatelessWidget {
               AT1Strings.signInTitle.tr,
               textAlign: TextAlign.start,
               style: TextStyle(
-                fontFamily: AppTheme.fontAVGARDD,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontAVGARDD,
                 fontSize: AppTheme.fontAVGARDDSize,
               ),
               color: Theme.of(context).colorScheme.secondary,
@@ -192,7 +196,10 @@ class LoginScreen extends StatelessWidget {
         child: FxText.bodySmall(
           AT1Strings.signInForgotPassword.tr,
           color: Theme.of(context).colorScheme.secondary,
-          style: TextStyle(fontFamily: AppTheme.fontVisbyCF),
+          style: TextStyle(
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF),
         ),
       ),
     );
@@ -232,7 +239,9 @@ class LoginScreen extends StatelessWidget {
             fontWeight: 700,
             letterSpacing: 0.5,
             style: TextStyle(
-              fontFamily: AppTheme.fontVisbyCF,
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
               color: Colors.white,
             ),
           ),
@@ -258,7 +267,9 @@ class LoginScreen extends StatelessWidget {
           text: TextSpan(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
-                fontFamily: AppTheme.fontVisbyCF,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
               ),
               children: <TextSpan>[
             TextSpan(
@@ -271,7 +282,9 @@ class LoginScreen extends StatelessWidget {
               text: AT1Strings.signUp.tr,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
-                fontFamily: AppTheme.fontVisbyCF,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
               ),
             ),
           ])),
@@ -292,7 +305,9 @@ class LoginScreen extends StatelessWidget {
               fontWeight: 300,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: AppTheme.fontVisbyCF,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontVisbyCF,
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ),

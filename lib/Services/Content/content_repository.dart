@@ -39,7 +39,8 @@ class ContentRepository {
     final response = await _contentService.getAllServices();
     //Debug.d(response.body[Keys.dataKey]);
     try {
-      final services = servicesDataFromJson(json.encode(response.body[Keys.dataKey]));
+      final services =
+          servicesDataFromJson(json.encode(response.body[Keys.dataKey]));
       return services;
     } catch (error) {
       Debug.d(error);
@@ -109,5 +110,4 @@ class ContentRepository {
       throw MessageException(response.error.toString());
     }
   }
-
 }

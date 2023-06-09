@@ -1,5 +1,6 @@
 import 'package:app/Theme/theme_type.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
@@ -10,7 +11,7 @@ class AppTheme {
   static double fontVisbyCFSize = 15;
 
   static String fontAVGARDD = 'AVGARDD';
-  static double fontAVGARDDSize = 35;
+  static double fontAVGARDDSize = 30;
 
   static ThemeData theme = getTheme();
 
@@ -22,7 +23,9 @@ class AppTheme {
 
   /// -------------------------- Light Theme  -------------------------------------------- ///
   static final ThemeData lightTheme = ThemeData(
-    fontFamily: fontVisbyCF,
+    fontFamily: Get.locale?.languageCode == 'ar'
+        ? GoogleFonts.almarai().fontFamily!
+        : fontVisbyCF,
 
     /// Brightness
     brightness: Brightness.light,

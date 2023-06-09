@@ -1,6 +1,8 @@
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Screens/Main/home.dart';
+import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -9,13 +11,16 @@ import 'package:flutx/utils/spacing.dart';
 import 'package:flutx/widgets/button/button.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../Enums/Shared/keys.dart';
 
 class ContentScreen extends StatelessWidget {
   static const routeName = '/ContentScreen';
-  ContentScreen({Key? key,}) : super(key: key);
+  ContentScreen({
+    Key? key,
+  }) : super(key: key);
 
   final _appController = Get.find<AppController>();
 
@@ -30,9 +35,18 @@ class ContentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Get.arguments?[Keys.title] ?? "", style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
+        title: Text(
+          Get.arguments?[Keys.title] ?? "",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontFamily: Helpers.isRtl()
+                ? GoogleFonts.almarai().fontFamily
+                : AppTheme.fontVisbyCF,
+          ),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.secondary),
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).colorScheme.secondary),
           onPressed: () => Get.back(),
         ),
       ),
@@ -58,16 +72,22 @@ class ContentScreen extends StatelessWidget {
   Widget _bodyUi(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
         Html(data: """${Get.arguments?[Keys.content] ?? ""}""", style: {
-          "*" : Style(
+          "*": Style(
+            fontFamily: Helpers.isRtl()
+                ? GoogleFonts.almarai().fontFamily
+                : AppTheme.fontVisbyCF,
             fontSize: FontSize.large,
             textAlign: TextAlign.justify,
           )
         }),
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
       ],
     );
   }
-
 }

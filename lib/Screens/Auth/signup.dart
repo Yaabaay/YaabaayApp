@@ -5,6 +5,7 @@ import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Main/home.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/Go.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/screens_bg.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:flutx/utils/spacing.dart';
 import 'package:flutx/widgets/button/button.dart';
 import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../Controllers/authentication_controller.dart';
@@ -97,7 +99,9 @@ class SignupScreen extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
               textDirection: getCurrentTextDirection(context),
               style: TextStyle(
-                fontFamily: AppTheme.fontAVGARDD,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily
+                    : AppTheme.fontAVGARDD,
                 fontSize: AppTheme.fontAVGARDDSize,
               ),
             ),
@@ -295,7 +299,9 @@ class SignupScreen extends StatelessWidget {
             letterSpacing: 0.5,
             style: TextStyle(
               color: Colors.white,
-              fontFamily: AppTheme.fontVisbyCF,
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
             ),
           ),
           FxSpacing.width(8),
@@ -319,14 +325,18 @@ class SignupScreen extends StatelessWidget {
                 text: AT1Strings.signUpByClicking.tr,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
-                  fontFamily: AppTheme.fontVisbyCF,
+                  fontFamily: Helpers.isRtl()
+                      ? GoogleFonts.almarai().fontFamily
+                      : AppTheme.fontVisbyCF,
                 )),
             const TextSpan(text: '  '),
             TextSpan(
                 text: AT1Strings.settingsTermsConditions.tr,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontFamily: AppTheme.fontVisbyCF,
+                  fontFamily: Helpers.isRtl()
+                      ? GoogleFonts.almarai().fontFamily
+                      : AppTheme.fontVisbyCF,
                 )),
           ])),
     );
@@ -343,14 +353,18 @@ class SignupScreen extends StatelessWidget {
             text: AT1Strings.signUpAlreadyHaveAccount.tr,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
-              fontFamily: AppTheme.fontVisbyCF,
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
             )),
         const TextSpan(text: '  '),
         TextSpan(
             text: AT1Strings.signIn.tr,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
-              fontFamily: AppTheme.fontVisbyCF,
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
             )),
       ])),
     );
@@ -370,7 +384,9 @@ class SignupScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               color: Theme.of(context).colorScheme.secondary,
               style: TextStyle(
-                fontFamily: AppTheme.fontVisbyCF,
+                fontFamily: Helpers.isRtl()
+                    ? GoogleFonts.almarai().fontFamily 
+                    : AppTheme.fontVisbyCF,
                 fontSize: AppTheme.fontVisbyCFSize,
               ),
             ),

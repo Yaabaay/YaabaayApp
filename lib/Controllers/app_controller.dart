@@ -32,6 +32,7 @@ class AppController extends GetxController {
   var dialCode = "90".obs;
   var selectedIndex = 0.obs;
   var lang = "en".obs;
+  var langString = "English".obs;
 
   Rx<SettingsModel?> settings = (null as SettingsModel?).obs;
 

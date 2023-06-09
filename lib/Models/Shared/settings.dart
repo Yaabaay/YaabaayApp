@@ -1,5 +1,6 @@
-class SettingsModel {
+import 'package:app/Models/Shared/translation.dart';
 
+class SettingsModel {
   static const _emailOrPhoneKey = 'emailOrPhone';
   static const _managementEmailKey = 'managementEmail';
   static const _supportEmailKey = 'supportEmail';
@@ -12,28 +13,28 @@ class SettingsModel {
   String? managementEmail;
   String? supportEmail;
   String? supportNumber;
-  String? about;
-  String? privacy;
-  String? terms;
+  TranslationData? about;
+  TranslationData? privacy;
+  TranslationData? terms;
 
-  SettingsModel(
-      {this.emailOrPhone,
-        this.managementEmail,
-        this.supportEmail,
-        this.supportNumber,
-        this.about,
-        this.privacy,
-        this.terms,
-      });
+  SettingsModel({
+    this.emailOrPhone,
+    this.managementEmail,
+    this.supportEmail,
+    this.supportNumber,
+    this.about,
+    this.privacy,
+    this.terms,
+  });
 
   SettingsModel.fromJson(Map<String, dynamic> json) {
     emailOrPhone = json[_emailOrPhoneKey];
     managementEmail = json[_managementEmailKey];
     supportEmail = json[_supportEmailKey];
     supportNumber = json[_supportNumberKey];
-    about = json[_aboutKey];
-    privacy = json[_privacyKey];
-    terms = json[_termsKey];
+    about = TranslationData.fromJson(json[_aboutKey]);
+    privacy = TranslationData.fromJson(json[_privacyKey]);
+    terms = TranslationData.fromJson(json[_termsKey]);
   }
 
   Map<String, dynamic> toJson() {

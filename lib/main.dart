@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             title: 'YaaBaay',
             debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.system,
-            theme: themeNotifier.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+            themeMode: ThemeMode.dark,
+            theme:
+                themeNotifier.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
             locale: Get.deviceLocale,
             fallbackLocale: Locale('en'),
             translations: AT1Translations(),

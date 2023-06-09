@@ -141,18 +141,19 @@ class _ServiceRequestScreenState extends State<ServiceRequestScreen> {
             color: Theme.of(context).colorScheme.background,
           ),
           child: TransformWithDirection(
-              context,
-              Icon(
-                FeatherIcons.chevronLeft,
-                color: Theme.of(context).colorScheme.secondary,
-              )),
+            context,
+            Icon(
+              FeatherIcons.chevronLeft,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+          ),
         ),
       ),
       flexibleSpace: FlexibleSpaceBar(
           //centerTitle: true,
           titlePadding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           title: FxText.bodyMedium(
-            Get.arguments.name,
+            Get.arguments.name?.getTran(),
             style: TextStyle(
               fontFamily: AppTheme.fontAVGARDD,
               fontSize: AppTheme.fontAVGARDDSize,
@@ -324,7 +325,7 @@ class _ServiceRequestScreenState extends State<ServiceRequestScreen> {
                   ? _appController.dialCode.value + _mobileController.text
                   : "",
               password: _passwordController.text,
-              notes: _servicesData?.name,
+              notes: _servicesData?.name?.getTran(),
               registerBy: "",
             );
             Debug.d(dto.toJson());

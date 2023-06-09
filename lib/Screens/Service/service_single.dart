@@ -65,7 +65,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
             (BuildContext context, int index) {
               return Column(
                 children: [
-                  htmlContent(_servicesData.desc!),
+                  htmlContent(_servicesData.desc?.getTran()),
                   services(
                       context, authenticationController, _servicesData.subs!),
                   Container(
@@ -81,8 +81,10 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
     );
   }
 
-  Future<void> sendRequest(AuthenticationController authenticationController,
-      ServicesData servicesData) async {
+  Future<void> sendRequest(
+    AuthenticationController authenticationController,
+    ServicesData servicesData,
+  ) async {
     showAlertDialog(context,
         title: AT1Strings.freeConsultation.tr,
         alertText: AT1Strings.ServiceAskConsultation.tr,
@@ -92,7 +94,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
         try {
           ProgressIndicators.loadingDialog();
           final dto = ServiceOrderDTO(
-              categoryId: servicesData.id, notes: servicesData.name);
+              categoryId: servicesData.id, notes: servicesData.name?.getTran());
           Debug.d(dto.toJson());
           await _appController.sendServiceUserOrder(dto);
           Snackbars.success(AT1Strings.ServiceThanksConsultation.tr);
@@ -138,7 +140,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
           //centerTitle: true,
           titlePadding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           title: FxText.bodyMedium(
-            _servicesData.name!,
+            _servicesData.name?.getTran(),
             fontSize: 25.0,
             style: TextStyle(
               color: Colors.white,
@@ -185,8 +187,10 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
         Text(AT1Strings.freeConsultation.tr),
       ]),
       backgroundColor: Theme.of(context).primaryColor,
-      onPressed: () async =>
-          await sendRequest(authenticationController, servicesData),
+      onPressed: () async => await sendRequest(
+        authenticationController,
+        servicesData,
+      ),
     );
     /**
      * Old FloatingActionButton
@@ -289,7 +293,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
               children: [
                 FxSpacing.height(16),
                 FxText.titleLarge(
-                  '${servicesData.name}',
+                  '${servicesData.name?.getTran()}',
                   fontWeight: 600,
                   letterSpacing: 0,
                   color: Colors.white,

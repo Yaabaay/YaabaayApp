@@ -78,7 +78,7 @@ abstract class AT1Strings {
   static const ProfileCustomer = 'profile.customer';
   static const ProfileAgent = 'profile.agent';
   static const ProfileAdmin = 'profile.ceo';
-  static const ProfileEdit= 'profile.edit';
+  static const ProfileEdit = 'profile.edit';
 
   //Service Single
   static const Service = 'service';
@@ -92,7 +92,8 @@ abstract class AT1Strings {
   //Service Request Sent
   static const ServiceRequestSent = 'service.request.sent';
   static const ServiceRequestSentSuccess = 'service.request.sent.success';
-  static const ServiceRequestSentSuccessContent = 'service.request.sent.success.content';
+  static const ServiceRequestSentSuccessContent =
+      'service.request.sent.success.content';
 
   //Notifications
   static const Notifications = 'notifications';
@@ -108,11 +109,11 @@ abstract class AT1Strings {
   //Settings
   static const settingsTitle = 'settings.title';
   static const settingsLanguage = 'settings.language';
+  static const settingsSelectLanguage = 'settings.select.language';
   static const settingsTheme = 'settings.theme';
   static const settingsNotifications = 'settings.notifications';
   static const settingsPrivacyPolicy = 'settings.privacy.policy';
-  static const settingsTermsConditions= 'settings.terms.conditions';
+  static const settingsTermsConditions = 'settings.terms.conditions';
   static const settingsHelpSupport = 'settings.help.support';
   static const settingsAbout = 'settings.about.support';
-
 }
