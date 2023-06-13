@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: EdgeInsets.only(
           top: Platform.isIOS ? 70 : 40, right: 15, left: 15, bottom: 10),
       width: Get.width,
-      height: 100,
+      height: Platform.isIOS ? 130 : 100,
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topCenter,

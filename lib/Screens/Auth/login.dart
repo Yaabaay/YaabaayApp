@@ -55,10 +55,12 @@ class LoginScreen extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        width: Get.width,
         decoration: backgroundBoxDecoration(
           Assets.bgScreen1,
-          boxFit: BoxFit.contain,
+          boxFit: BoxFit.cover,
           color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.bottomCenter,
         ),
         child: Column(
           children: [

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Main/home.dart';
@@ -54,7 +56,7 @@ class NotificationsScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(30),
-              child: _bodyUi(context),
+              child: Center(child: _bodyUi(context), ),
             ),
           ],
         ),
@@ -87,7 +89,7 @@ class NotificationsScreen extends StatelessWidget {
           fit: BoxFit.cover,
           repeat: true,
         ),
-        FxSpacing.height(30),
+        FxSpacing.height(Platform.isIOS ? 100 : 30),
         FxText.bodySmall(
           AT1Strings.NotificationsNoContent.tr,
           textAlign: TextAlign.center,

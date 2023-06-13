@@ -66,9 +66,12 @@ class SignupScreen extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
         child: Container(
-      decoration: backgroundBoxDecoration(Assets.bgScreen2,
-          boxFit: BoxFit.contain,
-          color: Theme.of(context).colorScheme.background),
+      decoration: backgroundBoxDecoration(
+        Assets.bgScreen2,
+          boxFit: BoxFit.cover,
+          color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.bottomCenter,
+          ),
       child: Column(
         children: [
           const SizedBox(
@@ -316,7 +319,7 @@ class SignupScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.toNamed(ContentScreen.routeName, arguments: {
         Keys.title: AT1Strings.settingsTermsConditions.tr,
-        Keys.content: _appController.settings.value?.terms
+        Keys.content: _appController.settings.value?.terms?.getTran()
       }),
       child: RichText(
           textAlign: TextAlign.center,

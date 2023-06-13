@@ -1,3 +1,4 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,4 +16,14 @@ class Helpers {
   static bool isRtl() {
     return Get.locale?.languageCode == 'ar' ? true : false;
   }
+
+  static Future<bool> isIpad() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    IosDeviceInfo info = await deviceInfo.iosInfo;
+    if (info.model.toLowerCase().contains("ipad")) {
+      return true;
+    }
+    return false;
+  }
+
 }

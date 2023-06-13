@@ -50,8 +50,9 @@ class ServiceRequestSentScreen extends StatelessWidget {
       child: Container(
         decoration: backgroundBoxDecoration(
           Assets.bgScreen6,
-          boxFit: BoxFit.contain,
+          boxFit: BoxFit.cover,
           color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.bottomCenter,
         ),
         child: Column(
           children: [
