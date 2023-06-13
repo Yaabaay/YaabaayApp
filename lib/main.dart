@@ -14,11 +14,6 @@ import 'Utilities/controllers_binder.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (kReleaseMode) {
-    await dotenv.load(fileName: ".env.production");
-  } else {
-    await dotenv.load(fileName: ".env.development");
-  }
   await GetStorage.init();
   await AT1Translations.init();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

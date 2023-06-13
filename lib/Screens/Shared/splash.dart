@@ -24,8 +24,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
-
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   final _appController = Get.find<AppController>();
   final _authController = Get.find<AuthenticationController>();
   //late AnimationController _animationController;
@@ -85,32 +85,31 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         body: Container(
           width: Get.width,
           height: Get.height,
-          decoration: backgroundBoxDecoration(Assets.bg, color: Theme.of(context).colorScheme.background),
-          child:
-              Center(
-                child: _controller.value.isInitialized
-                    ? VideoPlayer(_controller)
-                    : Container(),
-              ),
-            // Center(
-            //   child: Container(
-            //     child: Lottie.asset(
-            //       Assets.appLogoLottie,
-            //       width: 750,
-            //       height: 342,
-            //       fit: BoxFit.fitWidth,
-            //       controller: _animationController,
-            //       repeat: false,
-            //       onLoaded: (comp) {
-            //         _animationController
-            //           ..duration = comp.duration
-            //           ..forward();
-            //       },
-            //     ),
-            //   ),
-            // ),
-        )
-    );
+          decoration: backgroundBoxDecoration(Assets.bg,
+              color: Theme.of(context).colorScheme.background),
+          child: Center(
+            child: _controller.value.isInitialized
+                ? VideoPlayer(_controller)
+                : Container(),
+          ),
+          // Center(
+          //   child: Container(
+          //     child: Lottie.asset(
+          //       Assets.appLogoLottie,
+          //       width: 750,
+          //       height: 342,
+          //       fit: BoxFit.fitWidth,
+          //       controller: _animationController,
+          //       repeat: false,
+          //       onLoaded: (comp) {
+          //         _animationController
+          //           ..duration = comp.duration
+          //           ..forward();
+          //       },
+          //     ),
+          //   ),
+          // ),
+        ));
   }
 
   Future<void> init() async {
@@ -134,38 +133,37 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     Debug.d('loadData userCompleteIntro $userCompleteIntro');
     final isLoggedIn = await _loadUser();
     Debug.d('user is logged: ${isLoggedIn.toString()}');
-    await PushNotifications.initialization();
-    if( isLoggedIn ) {
+    //await PushNotifications.initialization();
+    if (isLoggedIn) {
       _timer.cancel();
-      await _updateNotificationsToken();
+      //await _updateNotificationsToken();
       await goNext();
     }
   }
 
   Future<void> _updateNotificationsToken() async {
     //Debug.d('updateNotificationsToken');
-    final deviceType = await getDevicePlatform();
-    final token = await PushNotifications.getToken();
-    final dto = NotificationTokenDTO(
-        type: deviceType,
-        token: token,
-        language: Get.deviceLocale?.languageCode ?? "en",
-    );
-    //Debug.d(dto.toJson().toString());
-    await _authController.pushNotificationTokenRequest(dto);
+    // final deviceType = await getDevicePlatform();
+    // final token = await PushNotifications.getToken();
+    // final dto = NotificationTokenDTO(
+    //     type: deviceType,
+    //     token: token,
+    //     language: Get.deviceLocale?.languageCode ?? "en",
+    // );
+    // //Debug.d(dto.toJson().toString());
+    // await _authController.pushNotificationTokenRequest(dto);
   }
 
   Future<void> goNext() async {
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    if( !userCompleteIntro ){
+    if (!userCompleteIntro) {
       Get.offAllNamed(IntroScreen.routeName);
     } else {
-      if( _authController.user == null ){
+      if (_authController.user == null) {
         Get.offAllNamed(LoginScreen.routeName);
-      }else{
+      } else {
         Get.offAllNamed(HomeScreen.routeName);
       }
     }
   }
-
 }
