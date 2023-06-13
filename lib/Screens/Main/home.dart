@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Enums/Backend/urls.dart';
 import 'package:app/Models/Service/ServicesData.dart';
@@ -71,15 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
             //color: Theme.of(context).colorScheme.background,
             margin: const EdgeInsets.only(top: 270),
             child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    services(context),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                )),
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  services(context),
+                  const SizedBox(height: 30),
+                ],
+              ),
+            ),
           ),
         ),
         Positioned(child: topBar(context)),
@@ -111,9 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget topBar(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 0),
-      padding: const EdgeInsets.only(top: 40, right: 15, left: 15, bottom: 10),
+      padding: EdgeInsets.only(
+          top: Platform.isIOS ? 70 : 40, right: 15, left: 15, bottom: 10),
       width: Get.width,
-      height: 75,
+      height: 100,
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -136,20 +138,22 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                onTap: () => _scaffoldKey.currentState?.openDrawer(),
-                child: SvgPicture.asset(
-                  Assets.menu,
-                  height: 27,
-                  color: Colors.white,
-                ),
-              )),
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTap: () => _scaffoldKey.currentState?.openDrawer(),
+              child: SvgPicture.asset(
+                Assets.menu,
+                height: 27,
+                color: Colors.white,
+              ),
+            ),
+          ),
           Container(
+            margin: EdgeInsets.only(top: 10),
             alignment: Alignment.center,
             child: Image.asset(
               Assets.appWhiteLogo,
-              height: 60,
+              height: 70,
             ),
           ),
           Container(
@@ -238,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //@ignore:
     return Obx(() => Container(
           //color: Theme.of(context).colorScheme.background,
-          margin: const EdgeInsets.only(top: 50, right: 10, left: 10),
+          margin: const EdgeInsets.only(top: 20, right: 10, left: 10),
           width: Get.width,
           child: GridView.builder(
             shrinkWrap: true,
@@ -265,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: const EdgeInsets.all(5),
       height: 20,
       paddingAll: 0,
-      borderRadiusAll: 16,
+      borderRadiusAll: 5,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: Stack(
         children: [
