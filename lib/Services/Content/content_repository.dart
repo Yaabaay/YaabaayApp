@@ -64,7 +64,7 @@ class ContentRepository {
     final body = dto.toJson();
     Debug.d(body);
     final response = await _contentService.serviceOrderCreateGuest(body);
-    Debug.d(response);
+    Debug.d(response.body);
     try {
       final user = User.fromJson(response.body[Keys.userKey]);
       return user;

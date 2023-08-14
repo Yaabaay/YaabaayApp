@@ -240,24 +240,26 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Services
   Widget services(BuildContext context) {
     //@ignore:
-    return Obx(() => Container(
-          //color: Theme.of(context).colorScheme.background,
-          margin: const EdgeInsets.only(top: 20, right: 10, left: 10),
-          width: Get.width,
-          child: GridView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: _appController.servicesItems.length,
-            itemBuilder: (context, index) {
-              return serviceItem(_appController.servicesItems[index]);
-            },
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: 200,
-            ),
+    return Obx(
+      () => Container(
+        //color: Theme.of(context).colorScheme.background,
+        margin: const EdgeInsets.only(top: 20, right: 10, left: 10),
+        width: Get.width,
+        child: GridView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: _appController.servicesItems.length,
+          itemBuilder: (context, index) {
+            return serviceItem(_appController.servicesItems[index]);
+          },
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 200,
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget serviceItem(ServicesData servicesData) {
