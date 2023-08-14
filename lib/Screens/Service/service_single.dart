@@ -7,12 +7,10 @@ import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/confim_dialog.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/transform_direction.dart';
-import 'package:app/extensions/widgets_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutx/flutx.dart';
-import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
 
 import '../../Controllers/app_controller.dart';
@@ -43,6 +41,7 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
   @override
   void initState() {
     _servicesData = Get.arguments;
+    Debug.d('data : ${_servicesData}');
     super.initState();
   }
 
@@ -240,8 +239,13 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
       ServicesData servicesData) {
     return FxContainer(
       color: Theme.of(context).colorScheme.background,
-      onTap: () async {
-        await sendRequest(authenticationController, servicesData);
+      onTap: () {
+        Get.to(
+          () => ServiceSingleScreen(),
+          arguments: servicesData,
+          preventDuplicates: false,
+        );
+        //await sendRequest(authenticationController, servicesData);
       },
       margin: const EdgeInsets.all(5),
       height: 10,
