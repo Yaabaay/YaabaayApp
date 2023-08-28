@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/DTOs/Authentication/notification_token.dart';
 import 'package:app/DTOs/Profile/requestRetrieveUserPassword.dart';
+import 'package:app/Models/Profile/CustomerModel.dart';
 import 'package:app/Services/Authentication/authentication_repository.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,6 +29,8 @@ class AuthenticationController extends GetxController {
   String? get accessToken => _user.value?.token;
 
   final _message = "".obs;
+  var customersCounter = '0'.obs;
+  var customersCode = ''.obs;
 
   AuthenticationController() {
     _repository = AuthenticationRepository();
@@ -151,6 +154,15 @@ class AuthenticationController extends GetxController {
     } catch (error) {
       await logout();
       return false;
+    }
+  }
+
+  Future<CustomerModel> getAgentStatus() async {
+    Debug.d('getAgentStatus work ...');
+    try {
+      return await _repository.getAgentStatus();
+    } catch (error) {
+      rethrow;
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:app/Enums/Shared/settings.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Shared/about_app.dart';
+import 'package:app/Screens/Shared/agent_screen.dart';
 import 'package:app/Screens/Shared/contact_us.dart';
 import 'package:app/Screens/Shared/help_center.dart';
 import 'package:app/Screens/Shared/settings.dart';
@@ -118,6 +119,20 @@ class SideMenu extends StatelessWidget {
                           },
                               iconColor:
                                   Theme.of(context).colorScheme.secondary);
+                        }
+                      }),
+                      Obx(() {
+                        //Debug.d('user : ${_authenticationController.user}');
+                        if (_authenticationController.user != null) {
+                          return menuItem(
+                              Assets.customerServiceMenu,
+                              AT1Strings.agentTitle.tr,
+                              () => Get.toNamed(AgentScreen.routeName),
+                              iconColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              iconHeight: 40);
+                        } else {
+                          return Container();
                         }
                       }),
                       menuItem(Assets.infoMenu, AT1Strings.aboutYaabaay.tr, () {

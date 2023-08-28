@@ -1,20 +1,20 @@
 import 'dart:async';
 import 'package:app/Controllers/app_controller.dart';
-import 'package:app/DTOs/Authentication/notification_token.dart';
 import 'package:app/Screens/Auth/login.dart';
 import 'package:app/Screens/Main/home.dart';
 import 'package:app/Screens/Shared/intro_screen.dart';
 import 'package:app/Utilities/assets.dart';
-import 'package:app/Utilities/device_type.dart';
+import 'package:app/Utilities/deep_linking.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/screens_bg.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../Controllers/authentication_controller.dart';
-import '../../Utilities/push_notifications.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
   //late AnimationController _animationController;
 
   late bool userCompleteIntro;
-  late VideoPlayerController _controller;
+  late VideoPlayerController _vdController;
 
   late Timer _timer;
   final seekDuration = 5000; //milliseconds
@@ -39,10 +39,10 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(Assets.splashDark)
+    _vdController = VideoPlayerController.asset(Assets.splashDark)
       ..initialize().then((_) {
         setState(() {
-          _controller.play();
+          _vdController.play();
         });
       });
 
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _vdController.dispose();
     _timer.cancel();
   }
 
@@ -88,8 +88,8 @@ class _SplashScreenState extends State<SplashScreen>
           decoration: backgroundBoxDecoration(Assets.bg,
               color: Theme.of(context).colorScheme.background),
           child: Center(
-            child: _controller.value.isInitialized
-                ? VideoPlayer(_controller)
+            child: _vdController.value.isInitialized
+                ? VideoPlayer(_vdController)
                 : Container(),
           ),
           // Center(
@@ -113,12 +113,12 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> init() async {
-    _controller = VideoPlayerController.asset(Assets.splashDark);
-    _controller.addListener(() {
+    _vdController = VideoPlayerController.asset(Assets.splashDark);
+    _vdController.addListener(() {
       setState(() {});
     });
-    await _controller.initialize();
-    _controller.play();
+    await _vdController.initialize();
+    _vdController.play();
   }
 
   Future<bool> _loadUser() async {
@@ -127,6 +127,12 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _loadData() async {
+    final hasInitialUrl = await DeepLinking.initialize();
+    if (hasInitialUrl) {
+      _vdController.pause();
+      return;
+    }
+    ;
     userCompleteIntro = await _appController.getIntro();
     await _appController.setLanguage();
     await _appController.getSettings();

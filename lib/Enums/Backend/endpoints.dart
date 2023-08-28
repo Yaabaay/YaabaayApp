@@ -7,7 +7,8 @@ abstract class Endpoints {
   static const refreshToken = '${Urls.auth}refreshToken';
 
   //user
-  static const requestRetrieveUserPassword = '${Urls.user}requestRetrieveUserPassword';
+  static const requestRetrieveUserPassword =
+      '${Urls.user}requestRetrieveUserPassword';
   static const pushNotificationToken = '${Urls.user}pushNotificationToken';
 
   static const setNewUserPassword = '${Urls.user}setNewUserPassword';
@@ -30,9 +31,10 @@ abstract class Endpoints {
   static const settings = '${Urls.content}getAllSettings';
   static const faqs = '${Urls.content}getFAQs';
 
+  static const getAgentByCode = '${Urls.user}getAgentByCode/{agentId}';
+  static const getAgentStatus = '${Urls.user}getAgentStatus';
+
   //order
   static const serviceOrderCreateUser = '${Urls.categoriesOrder}createUser';
   static const serviceOrderCreateGuest = '${Urls.categoriesOrder}createGuest';
-
-
 }

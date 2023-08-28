@@ -61,6 +61,7 @@ class Assets {
   static const contactMenu = '$images/contact.svg';
   static const ratingMenu = '$images/star.svg';
   static const logoutMenu = '$images/log-out.svg';
+  static const customerServiceMenu = '$images/customerservice.svg';
 
   //Lottie
   static const appLogoLottie = '$lottie/app_logo.json';

@@ -1,6 +1,7 @@
 import 'package:app/DTOs/Service/service_order.dart';
 import 'package:app/DTOs/Shared/contact_us.dart';
 import 'package:app/Enums/Shared/keys.dart';
+import 'package:app/Models/Profile/AgentModel.dart';
 import 'package:app/Models/Service/ServicesData.dart';
 import 'package:app/Models/Shared/faqs.dart';
 import 'package:app/Models/Shared/settings.dart';
@@ -19,7 +20,6 @@ import '../Models/Authentication/user.dart';
 import '../Models/Shared/slider_data.dart';
 
 class AppController extends GetxController {
-
   late ContentRepository _repository;
   late GetStorage _storage;
 
@@ -48,16 +48,16 @@ class AppController extends GetxController {
   }
 
   Future<void> setLanguage() async {
-    try{
+    try {
       final locale = Get.locale;
       final currentLanguage = await _storage.read(StorageKeys.language);
       Debug.d(locale?.languageCode);
       Debug.d(currentLanguage);
-      if( currentLanguage == null ) return;
-      if (locale?.languageCode != currentLanguage){
-        Get.updateLocale( Locale(currentLanguage) );
+      if (currentLanguage == null) return;
+      if (locale?.languageCode != currentLanguage) {
+        Get.updateLocale(Locale(currentLanguage));
       }
-    }catch(e){}
+    } catch (e) {}
   }
 
   Future<void> saveIntro(bool complete) async {
@@ -144,4 +144,12 @@ class AppController extends GetxController {
     }
   }
 
+  Future<AgentModel> getAgentByCode(String agentId) async {
+    Debug.d('getAgentByCode work agentId: ${agentId}');
+    try {
+      return await _repository.getAgentByCode(agentId);
+    } catch (error) {
+      rethrow;
+    }
+  }
 }

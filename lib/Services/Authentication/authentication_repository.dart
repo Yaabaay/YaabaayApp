@@ -1,3 +1,5 @@
+import 'package:app/Models/Profile/AgentModel.dart';
+import 'package:app/Models/Profile/CustomerModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:app/DTOs/Authentication/notification_token.dart';
 import 'package:app/DTOs/Authentication/signup.dart';
@@ -43,9 +45,11 @@ class AuthenticationRepository {
     }
   }
 
-  Future<Message> requestRetrieveUserPassword(RequestRetrieveUserPasswordDTO dto) async {
+  Future<Message> requestRetrieveUserPassword(
+      RequestRetrieveUserPasswordDTO dto) async {
     final body = dto.toJson();
-    final response = await _authenticationService.requestRetrieveUserPassword(body);
+    final response =
+        await _authenticationService.requestRetrieveUserPassword(body);
     try {
       final message = Message.fromJson(response.body);
       return message;
@@ -68,10 +72,17 @@ class AuthenticationRepository {
 
   Future<User> changeProfile(EditProfileDTO dto) async {
     dynamic file;
-    if( dto.avatar != null ){
-      file = await http.MultipartFile.fromPath('avatar', dto.avatar!.path,);
+    if (dto.avatar != null) {
+      file = await http.MultipartFile.fromPath(
+        'avatar',
+        dto.avatar!.path,
+      );
     }
-    final response = await _authenticationService.changeProfile(dto.name, dto.gender, file,);
+    final response = await _authenticationService.changeProfile(
+      dto.name,
+      dto.gender,
+      file,
+    );
     try {
       final result = User.fromJson(response.body[Keys.userKey]);
       return result;
@@ -93,4 +104,18 @@ class AuthenticationRepository {
     }
   }
 
+  Future<CustomerModel> getAgentStatus() async {
+    final response = await _authenticationService.getAgentStatus();
+    Debug.d('getAgentStatus ${response.base.request?.url.toString()}');
+    Debug.d('getAgentStatus ${response.bodyString}');
+    Debug.d('getAgentStatus ${response.statusCode}');
+    Debug.d('getAgentStatus ${response.body}');
+    try {
+      final customer = CustomerModel.fromJson(response.body);
+      return customer;
+    } catch (error) {
+      Debug.d(error);
+      throw MessageException(response.error.toString());
+    }
+  }
 }

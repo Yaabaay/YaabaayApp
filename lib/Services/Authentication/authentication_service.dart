@@ -12,7 +12,6 @@ part 'authentication_service.chopper.dart';
 
 @ChopperApi()
 abstract class AuthenticationService extends ChopperService {
-
   @Post(path: Endpoints.signIn)
   Future<Response> signIn(@Body() Map<String, dynamic> body);
 
@@ -20,21 +19,22 @@ abstract class AuthenticationService extends ChopperService {
   Future<Response> signUp(@Body() Map<String, dynamic> body);
 
   @Post(path: Endpoints.requestRetrieveUserPassword)
-  Future<Response> requestRetrieveUserPassword(@Body() Map<String, dynamic> body);
+  Future<Response> requestRetrieveUserPassword(
+      @Body() Map<String, dynamic> body);
 
   @Post(path: Endpoints.refreshToken)
   Future<Response> refreshToken();
 
   @multipart
   @Post(path: Endpoints.changeProfile)
-  Future<Response> changeProfile(
-    @Part() String? name,
-    @Part() String? gender,
-    @PartFile() MultipartFile? avatar
-  );
+  Future<Response> changeProfile(@Part() String? name, @Part() String? gender,
+      @PartFile() MultipartFile? avatar);
 
   @Post(path: Endpoints.pushNotificationToken)
   Future<Response> pushNotificationToken(@Body() Map<String, dynamic> body);
+
+  @Post(path: Endpoints.getAgentStatus)
+  Future<Response> getAgentStatus();
 
   static AuthenticationService create() {
     final client = ChopperClient(
@@ -52,4 +52,5 @@ abstract class AuthenticationService extends ChopperService {
     return _$AuthenticationService(client);
   }
 
+  //
 }
