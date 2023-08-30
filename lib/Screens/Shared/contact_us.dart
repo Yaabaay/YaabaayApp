@@ -265,23 +265,24 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
 
   Widget messageField() {
     return Container(
-        child: CupertinoTextField(
-      controller: _messageController,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.black54),
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+      child: CupertinoTextField(
+        controller: _messageController,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.black54),
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+        ),
+        cursorColor: Theme.of(context).colorScheme.primary,
+        placeholder: AT1Strings.ContactUsMsg.tr,
+        placeholderStyle: TextStyle(
+            color: Theme.of(context).colorScheme.secondary.withAlpha(160)),
+        minLines: 4,
+        maxLines: 5,
+        style: TextStyle(color: Colors.black87),
+        padding: FxSpacing.xy(8, 16),
+        textInputAction: TextInputAction.done,
       ),
-      cursorColor: Theme.of(context).colorScheme.primary,
-      placeholder: AT1Strings.ContactUsMsg.tr,
-      placeholderStyle: TextStyle(
-          color: Theme.of(context).colorScheme.secondary.withAlpha(160)),
-      minLines: 4,
-      maxLines: 5,
-      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
-      padding: FxSpacing.xy(8, 16),
-      textInputAction: TextInputAction.done,
-    ));
+    );
   }
 
   ContactUsDTO _generateDTO() {
