@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/DTOs/Shared/contact_us.dart';
 import 'package:app/Models/Authentication/user.dart';
+import 'package:app/Models/Profile/AgentModel.dart';
 import 'package:app/Models/Service/ServiceOrder.dart';
 import 'package:app/Models/Service/ServicesData.dart';
 import 'package:app/Models/Shared/contact_us.dart';
@@ -105,6 +106,22 @@ class ContentRepository {
     try {
       final faqs = faqsDataFromJson(json.encode(response.body[Keys.dataKey]));
       return faqs;
+    } catch (error) {
+      Debug.d(error);
+      throw MessageException(response.error.toString());
+    }
+  }
+
+  Future<AgentModel> getAgentByCode(String agentId) async {
+    Debug.d('agentId ${agentId}');
+    final response = await _contentService.getAgentByCode(agentId);
+    Debug.d('getAgentByCode ${response.base.request?.url.toString()}');
+    Debug.d('getAgentByCode ${response.bodyString}');
+    Debug.d('getAgentByCode ${response.statusCode}');
+    Debug.d('getAgentByCode ${response.body}');
+    try {
+      final agent = AgentModel.fromJson(response.body[Keys.dataKey]);
+      return agent;
     } catch (error) {
       Debug.d(error);
       throw MessageException(response.error.toString());

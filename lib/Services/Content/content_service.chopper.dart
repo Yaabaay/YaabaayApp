@@ -98,4 +98,15 @@ class _$ContentService extends ContentService {
     );
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> getAgentByCode(String agentId) {
+    final Uri $url = Uri.parse('user/getAgentByCode/${agentId}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
 }

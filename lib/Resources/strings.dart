@@ -58,6 +58,7 @@ abstract class AT1Strings {
   //Sign up
   static const signUpTitle = 'sign.up.title';
   static const signUpName = 'sign.up.name';
+  static const signUpRegisterBy = 'sign.up.register.by';
   static const signUpMobile = 'sign.up.mobile';
   static const signUpByClicking = 'sign.up.by.clicking';
   static const signUpAlreadyHaveAccount = 'sign.up.already';
@@ -116,4 +117,12 @@ abstract class AT1Strings {
   static const settingsTermsConditions = 'settings.terms.conditions';
   static const settingsHelpSupport = 'settings.help.support';
   static const settingsAbout = 'settings.about.support';
+
+  //Agent
+  static const agentTitle = 'agent.title';
+  static const customersTitle = 'customer.title';
+  static const customersTitleDesc = 'customer.title.desc';
+  static const agentCopy = 'agent.copy';
+  static const agentLink = 'agent.link';
+  static const textcopied = 'text.copied';
 }

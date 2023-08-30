@@ -9,7 +9,6 @@ part 'content_service.chopper.dart';
 
 @ChopperApi()
 abstract class ContentService extends ChopperService {
-
   @Get(path: Endpoints.settings)
   Future<Response> getSettings();
 
@@ -31,6 +30,9 @@ abstract class ContentService extends ChopperService {
   @Get(path: Endpoints.faqs)
   Future<Response> getFaqs();
 
+  @Get(path: Endpoints.getAgentByCode)
+  Future<Response> getAgentByCode(@Path("agentId") String agentId);
+
   static ContentService create() {
     final client = ChopperClient(
       baseUrl: Uri.parse(Urls.base),
@@ -46,5 +48,4 @@ abstract class ContentService extends ChopperService {
     );
     return _$ContentService(client);
   }
-
 }

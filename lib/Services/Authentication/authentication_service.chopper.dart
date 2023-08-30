@@ -110,4 +110,15 @@ class _$AuthenticationService extends AuthenticationService {
     );
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> getAgentStatus() {
+    final Uri $url = Uri.parse('user/getAgentStatus');
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
 }
