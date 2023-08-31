@@ -1,29 +1,22 @@
 {
-<<<<<<< HEAD
   "Home": "الرئيسية",
   "signIn": "تسجيل الدخول",
   "signUp": "تسجيل عضوية",
-
   "successTitle": "تم بنجاح",
   "errorTitle": "خطأ",
   "warningTitle": "تنبيه",
-
-  "sign.in.title" : "تسجيل الدخول",
-  "sign.in.email" : "البريد الإلكتروني",
-  "sign.in.password" : "كلمة المرور",
-  "sign.in.forgot" : "نسيت كلمة المرور ؟",
-  "sign.in.no.account" : "ليس لديك حساب ؟",
-  "" : "",
-
-  "settings.title" : "الإعدادات",
+  "sign.in.title": "تسجيل الدخول",
+  "sign.in.email": "البريد الإلكتروني",
+  "sign.in.password": "كلمة المرور",
+  "sign.in.forgot": "نسيت كلمة المرور ؟",
+  "sign.in.no.account": "ليس لديك حساب ؟",
+  "": "",
+  "settings.title": "الإعدادات",
   "settings.language": "اللغة",
-  "settings.theme" : "المظهر",
-  "settings.notifications" : "الإشعارات",
-  "settings.privacy.policy" : "سياسة الخصوصية",
-  "settings.terms.conditions" : "شروط الإستخدام",
-  "settings.help.support" : "المساعدة والدعم",
-  "settings.about.support" : "من نحن"
-=======
-  "viewer.home.label": "الرئيسية"
->>>>>>> 354f22d6529a326f9be8dd15271a7c107ac7624f
+  "settings.theme": "المظهر",
+  "settings.notifications": "الإشعارات",
+  "settings.privacy.policy": "سياسة الخصوصية",
+  "settings.terms.conditions": "شروط الإستخدام",
+  "settings.help.support": "المساعدة والدعم",
+  "settings.about.support": "من نحن"
 }
