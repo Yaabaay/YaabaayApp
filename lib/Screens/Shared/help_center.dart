@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/Controllers/app_controller.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Theme/app_theme.dart';
@@ -11,7 +13,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Models/Shared/faqs.dart';
 import '../../Models/Shared/message_exception.dart';
-import '../../Utilities/progress_indicator.dart';
 
 class HelpCenterScreen extends StatefulWidget {
   static const routeName = '/HelpCenterScreen';
@@ -24,6 +25,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
   final _appController = Get.find<AppController>();
 
   List<FaqsModel> content = [];
+  int isExpanded = 0;
 
   OutlineInputBorder outlineInputBorder = const OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -93,7 +95,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
           expandedHeaderPadding: const EdgeInsets.all(0),
           expansionCallback: (int index, bool isExpanded) {
             setState(() {
-              content[index].isExpanded = !isExpanded;
+              this.isExpanded = index;
             });
           },
           animationDuration: const Duration(milliseconds: 500),
@@ -111,43 +113,46 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
     final widgets = <ExpansionPanel>[];
     if (content.isNotEmpty) {
       content.asMap().forEach((index, e) => {
-            widgets.add(ExpansionPanel(
-                canTapOnHeader: true,
-                headerBuilder: (BuildContext context, bool isExpanded) {
-                  return ListTile(
-                    title: FxText.titleSmall(e.question?.getTran() ?? "",
-                        color: isExpanded
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.onBackground,
+            widgets.add(
+              ExpansionPanel(
+                  canTapOnHeader: true,
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return ListTile(
+                      title: FxText.titleSmall(e.question?.getTran() ?? "",
+                          color: isExpanded
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.onBackground,
+                          style: TextStyle(
+                            fontFamily: Helpers.isRtl()
+                                ? GoogleFonts.almarai().fontFamily
+                                : AppTheme.fontVisbyCF,
+                            fontSize: AppTheme.fontVisbyCFSize,
+                          ),
+                          textAlign: Helpers.isRtl()
+                              ? TextAlign.right
+                              : TextAlign.left,
+                          fontWeight: isExpanded ? 600 : 500),
+                    );
+                  },
+                  body: Container(
+                    padding:
+                        const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                    child: Center(
+                      child: FxText.bodyMedium(
+                        e.answer?.getTran() ?? "",
+                        fontWeight: 500,
+                        color: Theme.of(context).colorScheme.secondary,
                         style: TextStyle(
                           fontFamily: Helpers.isRtl()
                               ? GoogleFonts.almarai().fontFamily
                               : AppTheme.fontVisbyCF,
                           fontSize: AppTheme.fontVisbyCFSize,
                         ),
-                        textAlign:
-                            Helpers.isRtl() ? TextAlign.right : TextAlign.left,
-                        fontWeight: isExpanded ? 600 : 500),
-                  );
-                },
-                body: Container(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                  child: Center(
-                    child: FxText.bodyMedium(
-                      e.answer?.getTran() ?? "",
-                      fontWeight: 500,
-                      color: Theme.of(context).colorScheme.secondary,
-                      style: TextStyle(
-                        fontFamily: Helpers.isRtl()
-                            ? GoogleFonts.almarai().fontFamily
-                            : AppTheme.fontVisbyCF,
-                        fontSize: AppTheme.fontVisbyCFSize,
                       ),
                     ),
                   ),
-                ),
-                isExpanded: content[index].isExpanded))
+                  isExpanded: index == isExpanded ? true : false),
+            )
           });
     }
     return widgets;
