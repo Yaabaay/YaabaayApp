@@ -90,6 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _emailController.dispose();
     _mobileController.dispose();
     _passwordController.dispose();
+    _registerByController.dispose();
   }
 
   @override
@@ -311,7 +312,7 @@ class _SignupScreenState extends State<SignupScreen> {
       email: _emailController.text.toLowerCase(),
       phone: '${_appController.dialCode.value}${_mobileController.text}',
       password: _passwordController.text,
-      registerBy: _agent != null ? _agent?.resellerCode ?? '' : '',
+      registerBy: _registerByController.text,
     );
   }
 
