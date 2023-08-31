@@ -174,7 +174,7 @@ class _AgentScreenState extends State<AgentScreen> {
                 ),
               ),
               child: Text(
-                '${Urls.agentlink}${_authCtl.customersCode.value}',
+                '${_authCtl.customersCode.value}',
                 style: TextStyle(
                   color: Colors.black,
                 ),

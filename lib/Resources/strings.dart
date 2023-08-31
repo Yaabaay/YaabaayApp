@@ -18,6 +18,7 @@ abstract class AT1Strings {
 
   // Alert
   static const successTitle = 'successTitle';
+  static const successTitleDesc = 'successTitleDesc';
   static const errorTitle = 'errorTitle';
   static const warningTitle = 'warningTitle';
 
