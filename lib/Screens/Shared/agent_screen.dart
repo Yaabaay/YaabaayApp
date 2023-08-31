@@ -86,6 +86,8 @@ class _AgentScreenState extends State<AgentScreen> {
     return SingleChildScrollView(
       child: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(30),
@@ -117,7 +119,7 @@ class _AgentScreenState extends State<AgentScreen> {
                 : AppTheme.fontAVGARDD,
           ),
         ),
-        FxSpacing.height(Platform.isIOS ? 100 : 30),
+        FxSpacing.height(30),
         Obx(
           () => FxText.displaySmall(
             '${_authCtl.customersCounter.value}',
@@ -132,7 +134,7 @@ class _AgentScreenState extends State<AgentScreen> {
             ),
           ),
         ),
-        FxSpacing.height(Platform.isIOS ? 100 : 30),
+        FxSpacing.height(30),
         FxText.bodySmall(
           AT1Strings.customersTitleDesc.tr,
           textAlign: TextAlign.center,
@@ -145,7 +147,7 @@ class _AgentScreenState extends State<AgentScreen> {
             fontSize: AppTheme.fontVisbyCFSize,
           ),
         ),
-        FxSpacing.height(Platform.isIOS ? 100 : 30),
+        FxSpacing.height(30),
         FxText.bodySmall(
           AT1Strings.agentCopy.tr,
           textAlign: TextAlign.center,
@@ -158,7 +160,7 @@ class _AgentScreenState extends State<AgentScreen> {
             fontSize: AppTheme.fontVisbyCFSize,
           ),
         ),
-        FxSpacing.height(Platform.isIOS ? 100 : 30),
+        FxSpacing.height(30),
         GestureDetector(
           onTap: () => _copyToClipboard(context),
           child: Obx(
@@ -181,7 +183,7 @@ class _AgentScreenState extends State<AgentScreen> {
             ),
           ),
         ),
-        FxSpacing.height(Platform.isIOS ? 100 : 30),
+        FxSpacing.height(30),
       ],
     );
   }
