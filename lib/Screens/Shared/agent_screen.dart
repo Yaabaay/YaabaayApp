@@ -52,8 +52,7 @@ class _AgentScreenState extends State<AgentScreen> {
   }
 
   void _copyToClipboard(BuildContext context) {
-    Clipboard.setData(ClipboardData(
-        text: '${Urls.agentlink}${_authCtl.customersCode.value}'));
+    Clipboard.setData(ClipboardData(text: '${_authCtl.customersCode.value}'));
   }
 
   @override
@@ -174,7 +173,7 @@ class _AgentScreenState extends State<AgentScreen> {
                 ),
               ),
               child: Text(
-                '${Urls.agentlink}${_authCtl.customersCode.value}',
+                '${_authCtl.customersCode.value}',
                 style: TextStyle(
                   color: Colors.black,
                 ),

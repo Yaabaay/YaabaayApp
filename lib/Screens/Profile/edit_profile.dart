@@ -2,21 +2,17 @@ import 'package:app/DTOs/Profile/edit_profile.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Main/home.dart';
 import 'package:app/Utilities/assets.dart';
-import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutx/flutx.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../Controllers/app_controller.dart';
 import '../../Controllers/authentication_controller.dart';
 import '../../Models/Shared/message_exception.dart';
 import '../../Utilities/progress_indicator.dart';
-import '../../Utilities/screens_bg.dart';
 import '../../Utilities/snackbars.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -317,7 +313,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         try {
           final dto = _generateDTO();
           await _authController.changeProfile(dto);
-          Get.offAllNamed(HomeScreen.routeName);
+          Get.back();
+          Snackbars.success(AT1Strings.successTitleDesc.tr);
+          //Get.offAllNamed(HomeScreen.routeName);
         } on MessageException catch (error) {
           Get.back();
           Snackbars.danger(error.message);
