@@ -126,4 +126,11 @@ abstract class AT1Strings {
   static const agentCopy = 'agent.copy';
   static const agentLink = 'agent.link';
   static const textcopied = 'text.copied';
+
+  //delete account
+  static const deleteAccount = 'delete.account';
+  static const deleteAccountConfirm = 'delete.account.confirm';
+  static const deleteAccountDone = 'delete.account.done';
+
+  //
 }

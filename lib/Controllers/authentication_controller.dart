@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:app/DTOs/Authentication/notification_token.dart';
 import 'package:app/DTOs/Profile/requestRetrieveUserPassword.dart';
 import 'package:app/Models/Profile/CustomerModel.dart';
+import 'package:app/Models/Shared/messages.dart';
 import 'package:app/Services/Authentication/authentication_repository.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:flutter/cupertino.dart';
@@ -161,6 +162,16 @@ class AuthenticationController extends GetxController {
     Debug.d('getAgentStatus work ...');
     try {
       return await _repository.getAgentStatus();
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<bool> deleteUserAccount() async {
+    Debug.d('deleteUserAccount work ...');
+    try {
+      await _repository.deleteAccount();
+      return true;
     } catch (error) {
       rethrow;
     }

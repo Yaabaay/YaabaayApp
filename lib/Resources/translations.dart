@@ -166,6 +166,12 @@ class AT1Translations extends Translations {
         AT1Strings.agentCopy: 'Click at code to copy',
         AT1Strings.agentLink: 'Referral Code',
         AT1Strings.textcopied: 'Text copied to clipboard',
+
+        //Delete Account
+        AT1Strings.deleteAccount: "Delete Your Account",
+        AT1Strings.deleteAccountConfirm:
+            "Are you sure you want to delete your account from our records?",
+        AT1Strings.deleteAccountDone: "Your account has been deleted",
       },
       'ar': {
         AT1Strings.langName: 'العربية',
@@ -300,6 +306,12 @@ class AT1Translations extends Translations {
         AT1Strings.agentCopy: 'انقر على الكود للنسخ',
         AT1Strings.agentLink: 'رمز الإحالة',
         AT1Strings.textcopied: 'تم نسخ النص إلى الحافظة',
+
+        //Delete Account
+        AT1Strings.deleteAccount: "حذف حسابك",
+        AT1Strings.deleteAccountConfirm:
+            "هل أنت متأكد أنك تريد حذف حسابك من سجلاتنا؟",
+        AT1Strings.deleteAccountDone: "تم حذف حسابك"
       },
       'tr': {
         AT1Strings.langName: 'Türk',
@@ -438,6 +450,12 @@ class AT1Translations extends Translations {
         AT1Strings.agentCopy: 'Kodu kopyalamak için tıklayın',
         AT1Strings.agentLink: 'Yönlendirme Kodu',
         AT1Strings.textcopied: 'Metin panosuna kopyalandı',
+
+        //Delete Account
+        AT1Strings.deleteAccount: "Hesabınızı Sil",
+        AT1Strings.deleteAccountConfirm:
+            "Hesabınızı kayıtlarımızdan silmek istediğinizden emin misiniz?",
+        AT1Strings.deleteAccountDone: "Hesabınız silindi"
       },
       'fr': {
         AT1Strings.langName: 'Français',
@@ -578,6 +596,12 @@ class AT1Translations extends Translations {
         AT1Strings.agentCopy: 'Cliquez sur le code pour copier',
         AT1Strings.agentLink: 'Code de Parrainage',
         AT1Strings.textcopied: 'Texte copié dans le presse-papiers',
+
+        //Delete Account
+        AT1Strings.deleteAccount: "Supprimer votre compte",
+        AT1Strings.deleteAccountConfirm:
+            "Êtes-vous sûr de vouloir supprimer votre compte de nos enregistrements ?",
+        AT1Strings.deleteAccountDone: "Votre compte a été supprimé"
       },
     };
   }
