@@ -5,6 +5,7 @@ abstract class Endpoints {
   static const signUp = '${Urls.auth}signUp';
   static const signIn = '${Urls.auth}signIn';
   static const refreshToken = '${Urls.auth}refreshToken';
+  static const deleteAccount = '${Urls.auth}deleteAccount';
 
   //user
   static const requestRetrieveUserPassword =

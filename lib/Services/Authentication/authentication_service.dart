@@ -33,6 +33,9 @@ abstract class AuthenticationService extends ChopperService {
   @Post(path: Endpoints.pushNotificationToken)
   Future<Response> pushNotificationToken(@Body() Map<String, dynamic> body);
 
+  @Post(path: Endpoints.deleteAccount)
+  Future<Response> deleteAccount();
+
   @Post(path: Endpoints.getAgentStatus)
   Future<Response> getAgentStatus();
 

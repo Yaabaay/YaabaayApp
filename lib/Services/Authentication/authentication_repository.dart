@@ -104,6 +104,17 @@ class AuthenticationRepository {
     }
   }
 
+  Future<dynamic> deleteAccount() async {
+    final response = await _authenticationService.deleteAccount();
+    Debug.d('deleteAccount response ${response.body}');
+    try {
+      return response.body;
+    } catch (error) {
+      Debug.e(error);
+      throw MessageException(response.error.toString());
+    }
+  }
+
   Future<CustomerModel> getAgentStatus() async {
     final response = await _authenticationService.getAgentStatus();
     Debug.d('getAgentStatus ${response.base.request?.url.toString()}');

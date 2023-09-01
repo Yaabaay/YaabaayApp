@@ -2,6 +2,8 @@ import 'package:app/DTOs/Profile/edit_profile.dart';
 import 'package:app/Resources/strings.dart';
 import 'package:app/Screens/Main/home.dart';
 import 'package:app/Utilities/assets.dart';
+import 'package:app/Utilities/confim_dialog.dart';
+import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -23,7 +25,7 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _appController = Get.find<AppController>();
-  final _authController = Get.find<AuthenticationController>();
+  final _authCtl = Get.find<AuthenticationController>();
 
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -41,9 +43,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = _authController.user!.name;
-    _emailController.text = _authController.user!.email;
-    _mobileController.text = _authController.user?.mobile ?? '';
+    _nameController.text = _authCtl.user!.name;
+    _emailController.text = _authCtl.user!.email;
+    _mobileController.text = _authCtl.user?.mobile ?? '';
   }
 
   @override
@@ -135,6 +137,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           //FxSpacing.height(20),
           editProfileBtn(context),
           FxSpacing.height(50),
+          deleteUserAccountBtn(context),
         ],
       ),
     );
@@ -189,7 +192,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ],
           ),
           FxText.titleLarge(
-            _authController.user!.name,
+            _authCtl.user!.name,
             fontWeight: 600,
             letterSpacing: 0,
             color: Theme.of(context).colorScheme.secondary,
@@ -264,7 +267,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         textDirection: TextDirection.ltr,
         child: TextFormField(
           style: FxTextStyle.bodyMedium(),
-          obscureText: _authController.showPassword.value ? false : true,
+          obscureText: _authCtl.showPassword.value ? false : true,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
@@ -275,10 +278,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             focusedBorder: outlineInputBorder,
             suffixIcon: InkWell(
                 onTap: () {
-                  _authController.updateShowPassword();
+                  _authCtl.updateShowPassword();
                 },
                 child: Icon(
-                  _authController.showPassword.value
+                  _authCtl.showPassword.value
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
                   size: 20,
@@ -312,7 +315,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ProgressIndicators.loadingDialog();
         try {
           final dto = _generateDTO();
-          await _authController.changeProfile(dto);
+          await _authCtl.changeProfile(dto);
           Get.back();
           Snackbars.success(AT1Strings.successTitleDesc.tr);
           //Get.offAllNamed(HomeScreen.routeName);
@@ -327,6 +330,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FxText.bodySmall(AT1Strings.ProfileEdit.tr.toUpperCase(),
+              color: Colors.white, fontWeight: 700, letterSpacing: 0.5),
+        ],
+      ),
+    );
+  }
+
+  Widget deleteUserAccountBtn(BuildContext context) {
+    return FxButton.block(
+      backgroundColor: Colors.red[500],
+      padding: FxSpacing.y(12),
+      onPressed: () async {
+        showAlertDialog(
+          context,
+          title: AT1Strings.deleteAccount.tr,
+          alertText: AT1Strings.deleteAccountConfirm.tr,
+          confirmButtonText: AT1Strings.submit.tr,
+          okCallback: () async {
+            FocusScope.of(context).unfocus();
+            ProgressIndicators.loadingDialog();
+            try {
+              await _authCtl.deleteUserAccount();
+              await _authCtl.logout();
+              Get.back();
+              Snackbars.success(AT1Strings.deleteAccountDone.tr);
+              Get.offAllNamed(HomeScreen.routeName);
+            } on MessageException catch (error) {
+              Debug.e(error);
+              Snackbars.danger(AT1Strings.errorTitle.tr);
+            }
+          },
+        );
+      },
+      elevation: 0,
+      borderRadiusAll: 5,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FxText.bodySmall(AT1Strings.deleteAccount.tr.toUpperCase(),
               color: Colors.white, fontWeight: 700, letterSpacing: 0.5),
         ],
       ),
