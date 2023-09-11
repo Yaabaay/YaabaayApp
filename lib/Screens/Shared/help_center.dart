@@ -95,7 +95,13 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
           expandedHeaderPadding: const EdgeInsets.all(0),
           expansionCallback: (int index, bool isExpanded) {
             setState(() {
-              this.isExpanded = index;
+              if (this.isExpanded == index) {
+                // if the panel is already expanded, set isExpanded to an index that doesn't exist
+                this.isExpanded = -1;
+              } else {
+                // otherwise, expand the panel
+                this.isExpanded = index;
+              }
             });
           },
           animationDuration: const Duration(milliseconds: 500),

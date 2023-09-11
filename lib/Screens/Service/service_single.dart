@@ -5,6 +5,7 @@ import 'package:app/Screens/Service/service_request.dart';
 import 'package:app/Screens/Service/service_request_sent.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/confim_dialog.dart';
+import 'package:app/Utilities/helpers.dart';
 import 'package:app/Utilities/logger.dart';
 import 'package:app/Utilities/transform_direction.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutx/flutx.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Controllers/app_controller.dart';
 import '../../Enums/Backend/urls.dart';
@@ -169,7 +171,18 @@ class _ServiceSingleScreenState extends State<ServiceSingleScreen> {
 
   //html content
   Widget htmlContent(String html) {
-    return Html(data: """$html""");
+    return Html(
+      data: """$html""",
+      style: {
+        "*": Style(
+          fontFamily: Helpers.isRtl()
+              ? GoogleFonts.almarai().fontFamily
+              : AppTheme.fontVisbyCF,
+          fontSize: FontSize.large,
+          textAlign: TextAlign.justify,
+        )
+      },
+    );
   }
 
   Widget floatingButton(AuthenticationController authenticationController,

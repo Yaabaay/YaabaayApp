@@ -1,23 +1,12 @@
-import 'dart:convert';
-
 import 'package:app/Controllers/app_controller.dart';
-import 'package:app/Models/Shared/translation.dart';
 import 'package:app/Resources/strings.dart';
-import 'package:app/Screens/Main/home.dart';
 import 'package:app/Theme/app_theme.dart';
 import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/helpers.dart';
-import 'package:app/Utilities/logger.dart';
-import 'package:app/Utilities/screens_bg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutx/utils/spacing.dart';
-import 'package:flutx/widgets/button/button.dart';
-import 'package:flutx/widgets/text/text.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 
 class AboutAppScreen extends StatelessWidget {
   static const routeName = '/AboutAppScreen';
@@ -86,16 +75,20 @@ class AboutAppScreen extends StatelessWidget {
           height: 20.0,
         ),
         Html(
-            data: """${_appController.settings.value?.about?.getTran()}""",
-            style: {
-              "*": Style(
-                fontFamily: Helpers.isRtl()
-                    ? GoogleFonts.almarai().fontFamily
-                    : AppTheme.fontVisbyCF,
-                fontSize: FontSize.large,
-                textAlign: TextAlign.justify,
-              )
-            }),
+          data: """${_appController.settings.value?.about?.getTran()}""",
+          style: {
+            "*": Style(
+              color: Get.isDarkMode
+                  ? Colors.white
+                  : Colors.black, // Set color based on mode
+              fontFamily: Helpers.isRtl()
+                  ? GoogleFonts.almarai().fontFamily
+                  : AppTheme.fontVisbyCF,
+              fontSize: FontSize.large,
+              textAlign: TextAlign.justify,
+            )
+          },
+        ),
         const SizedBox(
           height: 20.0,
         ),
