@@ -13,6 +13,8 @@ import 'package:app/Utilities/assets.dart';
 import 'package:app/Utilities/confim_dialog.dart';
 import 'package:app/Utilities/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutx/widgets/text/text.dart';
@@ -289,7 +291,8 @@ class SideMenu extends StatelessWidget {
                                         FeatherIcons.facebook,
                                         AT1Strings.facebook.tr, () async {
                                       await Helpers.launchURL(
-                                          Settings.facebookURL);
+                                          Settings.facebookURL,
+                                          Settings.facebookPageURLSchema);
                                     }),
                                   ],
                                 ),
@@ -299,10 +302,11 @@ class SideMenu extends StatelessWidget {
                                   children: <Widget>[
                                     quickActionWidget(
                                         context,
-                                        FeatherIcons.twitter,
-                                        AT1Strings.twitter.tr, () async {
+                                        Ionicons.logo_whatsapp,
+                                        AT1Strings.whatsapp.tr, () async {
                                       await Helpers.launchURL(
-                                          Settings.twitterURL);
+                                          Settings.whatsappURL,
+                                          Settings.whatsappURLSchema);
                                     }),
                                     // quickActionWidget(
                                     //   MdiIcons.mapMarkerOutline,
@@ -319,7 +323,8 @@ class SideMenu extends StatelessWidget {
                                         FeatherIcons.instagram,
                                         AT1Strings.instagram.tr, () async {
                                       await Helpers.launchURL(
-                                          Settings.instagramURL);
+                                          Settings.instagramURL,
+                                          Settings.instagramURLSchema);
                                     }),
                                     // quickActionWidget(
                                     //   MdiIcons.accountBoxOutline,

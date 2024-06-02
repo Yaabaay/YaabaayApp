@@ -52,7 +52,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="www.yaabaay.com" />
+                <data android:host="www.yaabaayapp.com" />
                 <data android:scheme="https" />
                 <data android:pathPrefix="/agent/" />
             </intent-filter>

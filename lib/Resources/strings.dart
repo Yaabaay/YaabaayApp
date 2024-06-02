@@ -32,7 +32,7 @@ abstract class AT1Strings {
   static const menuLogoutConfirm = 'menu.logout.confirm';
   static const menuFollowYaaBaayApp = 'menu.follow.social';
   static const facebook = 'facebook';
-  static const twitter = 'twitter';
+  static const whatsapp = 'whatsapp';
   static const instagram = 'instagram';
 
   //Intro

@@ -4,9 +4,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Helpers {
   /// open a web browser (URL)
-  static Future<void> launchURL(String url) async {
+  static Future<void> launchURL(String url, String schemaUrl) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
+    final schemaUri = Uri.parse(schemaUrl);
+    if (await canLaunchUrl(schemaUri)) {
+      await launchUrl(schemaUri);
+    } else if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
       throw 'Could not launch $url';
@@ -25,5 +28,4 @@ class Helpers {
     }
     return false;
   }
-
 }

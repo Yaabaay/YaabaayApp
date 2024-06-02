@@ -64,7 +64,7 @@ class AT1Translations extends Translations {
         AT1Strings.menuLogoutConfirm: 'Confirm Logout ?',
         AT1Strings.menuFollowYaaBaayApp: 'Follow us on social Media',
         AT1Strings.facebook: 'Facebook',
-        AT1Strings.twitter: 'Twitter',
+        AT1Strings.whatsapp: 'Whatsapp',
         AT1Strings.instagram: 'Instagram',
 
         //Intro
@@ -206,7 +206,7 @@ class AT1Translations extends Translations {
         AT1Strings.menuLogoutConfirm: 'تأكيد تسجيل الخروج ؟',
         AT1Strings.menuFollowYaaBaayApp: 'تابعنا على مواقع التواصل الإجتماعى',
         AT1Strings.facebook: 'فيس بوك',
-        AT1Strings.twitter: 'تويتر',
+        AT1Strings.whatsapp: 'واتساب',
         AT1Strings.instagram: 'إنستقرام',
 
         //Intro
@@ -346,7 +346,7 @@ class AT1Translations extends Translations {
         AT1Strings.menuLogoutConfirm: 'Oturumu Kapatmayı Onayladın mı?',
         AT1Strings.menuFollowYaaBaayApp: 'Bizi sosyal Medyadan takip edin',
         AT1Strings.facebook: 'Facebook',
-        AT1Strings.twitter: 'Twitter',
+        AT1Strings.whatsapp: 'Whatsapp',
         AT1Strings.instagram: 'Instagram',
 
         //Intro
@@ -490,7 +490,7 @@ class AT1Translations extends Translations {
         AT1Strings.menuLogoutConfirm: 'Confirmer la déconnexion ?',
         AT1Strings.menuFollowYaaBaayApp: 'Suivez-nous sur les réseaux sociaux',
         AT1Strings.facebook: 'Facebook',
-        AT1Strings.twitter: 'Twitter',
+        AT1Strings.whatsapp: 'Whatsapp',
         AT1Strings.instagram: 'Instagram',
 
         //Intro
